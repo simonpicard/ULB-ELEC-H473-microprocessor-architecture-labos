@@ -1,0 +1,69 @@
+	MOVI	1,-1
+	
+	MOVI	2,10
+	
+	MOVI    5,0x8000
+	
+	NAND    6,1,5
+	NAND    6,6,6
+	NAND    7,2,5
+	NAND    7,7,7
+	BEQ     6,7,easy
+        BEQ     0,0,other
+easy:   MUL     4,1,2
+        ADD     5,0,3
+        ADD     3,0,4
+        ADD     4,0,5
+        halt
+other:  BEQ     5,7,reg2neg // we consider reg2 always with MSB equal to 1 (reg2 neg)
+        ADD     6,0,1 // If not, we swap
+        ADD     1,0,2
+        ADD     2,0,6
+reg2neg:
+        ADDI    7,0,-1
+        SHL     4,1,7
+        ADDI    7,0,15
+        SHL     3,1,7
+        MOVI    7,0x7FFF
+        
+        NAND    2,7,2
+        NAND    2,2,2
+        MUL     6,2,1 // reg6=LSB, reg5=MSB
+        ADDI    2,0,0
+        MOVI    7,0x8000
+        
+        NAND    1,3,7
+        NAND    1,1,1
+        BEQ     1,7,one1
+        BEQ     0,0,end1
+one1:   ADDI    2,2,1
+        SUB     3,3,7
+end1:   NAND    1,6,7
+        NAND    1,1,1
+        BEQ     1,7,one2
+        BEQ     0,0,end2
+one2:   ADDI    2,2,1
+        SUB     6,6,7
+end2:   ADD     3,3,6
+        NAND    1,3,7
+        NAND    1,1,1
+        BEQ     1,7,one3
+        BEQ     0,0,end3
+one3:   ADDI    2,2,1
+        SUB     3,3,7
+end3:   ADDI    7,0,1
+        NAND    1,2,7
+        NAND    1,1,1
+        BEQ     1,7,one4
+        BEQ     0,0,end4
+one4:   MOVI    1,0x8000
+
+        ADD     3,3,1
+end4:   ADD     4,4,5
+        ADDI    7,0,2
+        NAND    1,2,7
+        NAND    1,1,1
+        BEQ     1,7,one5
+        BEQ     0,0,end5
+one5:   ADDI    4,4,1
+end5:   halt

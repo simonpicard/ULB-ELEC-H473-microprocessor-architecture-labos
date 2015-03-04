@@ -1,0 +1,48 @@
+        MOVI    1,0x8000
+		// Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,0x4000
+
+        LUI     6,512 // Add the most significant bit of reg1 to reg7
+        NAND    5,1,6
+        NAND    5,5,5
+        BEQ     6,5,one1
+        BEQ     0,0,rest1
+one1:   ADDI    7,7,1
+rest1:  NAND    5,2,6 // Add the most significant bit of reg2 to reg7
+        NAND    5,5,5
+        BEQ     6,5,one2
+        BEQ     0,0,rest2
+one2:   ADDI    7,7,1
+rest2:  MOVI    6,0x7FFF // Set the value of the most significant bit of reg1 and reg2 to zero in order to compute the sum of reg1 and reg2 in 15 bits.
+
+        NAND    1,1,6
+        NAND    1,1,1
+        NAND    2,2,6
+        NAND    2,2,2
+        ADD     3,1,2
+        LUI     6,512 // Add the most significant bit of reg3 to reg7
+        NAND    5,3,6
+        NAND    5,5,5
+        BEQ     6,5,one3
+        BEQ     0,0,rest3
+one3:   ADDI    7,7,1
+rest3:  ADDI    6,0,1 // Store the least significant bit of reg7 in reg5
+        NAND    5,7,6
+        NAND    5,5,5
+        MOVI    6,0x7FFF // Set the value of the most significant bit of reg3 to one
+
+        NAND    3,3,6
+        NAND    3,3,3
+        ADDI    6,0,1 // If the value of reg5 (the least significant bit of reg7) is one, set the value of the most significant bit of reg3 to one.
+        BEQ     6,5,one4
+        BEQ     0,0,rest4
+one4:   LUI     6,512
+        ADD     3,3,6
+rest4:  ADDI    6,0,2 // Store the second least significant bit of reg7 (carry bit) in reg4
+        NAND    5,7,6
+        NAND    5,5,5
+        BEQ     6,5,one5
+        ADDI    4,0,0
+        BEQ     0,0,end
+one5:   ADDI    4,0,1
+end:    HALT

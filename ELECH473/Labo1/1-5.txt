@@ -1,0 +1,10 @@
+        MOVI    1,0x80F4
+		// Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,0x8000 // Mask : 100...00
+        // AND(a,b) = NAND(NAND(a,b),NAND(a,b))
+        NAND    3,1,2 // reg3 = AND(reg1, reg2)
+        NAND    3,3,3
+        BEQ     2,3,one
+        HALT // We suppose that simulator initialize registers to 0
+one:    ADDI    7,0,1
+        HALT

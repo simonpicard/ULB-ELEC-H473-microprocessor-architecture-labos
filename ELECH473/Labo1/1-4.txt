@@ -1,0 +1,4 @@
+MOVI    5,1
+// Authors : Arnaud Rosette, Simon Picard
+ADD     5,5,5 // Multuply reg5 by two
+HALT

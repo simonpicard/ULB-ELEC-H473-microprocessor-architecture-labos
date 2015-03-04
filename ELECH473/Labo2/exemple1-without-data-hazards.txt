@@ -1,0 +1,19 @@
+                addi    2,0,1   // Authors : Arnaud Rosette, Simon Picard, reg2 = n-2
+                addi    3,0,1   // reg3 = n-1
+                addi    4,0,1   // reg4 = old reg3
+                addi    1,0,2   // reg1 = counter
+                addi    7,0,7   // reg7 = decrementer
+                add     3,3,2   // compute fibo(2)
+                sw      2,0,0   // store fibo(0)
+                sw      4,0,1   // store fibo(1)
+                sw      3,0,2   // store fibo(2)
+boucle:         beq     7,0,end
+                add     2,0,4   // reg2 = reg4
+                addi    1,1,1   // counter++
+                add     4,0,3   // reg4 = old reg3
+                add     3,3,2   // reg3 = fibo(n-1) + fibo(n-2)
+                addi    7,7,-1
+                nop
+                sw      3,1,0   // store fibo(n)
+                beq     0,0,boucle
+end:            halt

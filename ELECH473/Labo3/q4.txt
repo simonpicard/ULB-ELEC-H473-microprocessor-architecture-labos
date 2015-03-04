@@ -1,0 +1,35 @@
+operator <
+test vector :
+Positive number 1 : PN1
+Positive number 2 : PN2
+Null number : Null
+Negative number 1 : NN1
+Negative number 2 : NN2
+
+condition : 
+PN1 < PN2
+NN1 < NN2
+PN1, PN2 > 0
+NN1, NN2 < 0
+PN1, PN2, Abs(NN1), Abs(NN2) < 2^(RegSize-1)
+
+tests:
+PN1 < PN2 : true
+PN2 < PN1 : false
+PN1 < PN1 : false
+Null < PN1 : true
+PN1 < Null : false
+
+Null < Null : false
+
+NN1 < NN2 : false
+NN2 < NN1 : true
+NN1 < NN1 : false
+Null < NN1 : false
+NN1 < Null : true
+
+NN1 < PN1 : true
+PN1 < NN1 : false
+
+NN1 < Abs(NN1) : true
+Abs(NN1) < NN1 : false

@@ -1,0 +1,14 @@
+        MOVI    5,0xFFFF // LSB
+		// Authors : Arnaud Rosette, Simon Picard
+        MOVI    6,0x0001 // MSB
+
+        LUI     2,512 // MASK 1000...00
+        NAND    3,5,2 // reg3 = AND(reg5, reg2)
+        NAND    3,3,3
+        BEQ     2,3,one
+        BEQ     0,0,rest
+one:    ADDI    7,0,1
+rest:   ADD     5,5,5 // Shift reg5 to the left
+        ADD     6,6,6 // Shift reg6 to the left
+        ADD     6,6,7 // Add carry bit to reg6
+        HALT

@@ -1,0 +1,9 @@
+	MOVI	1,-20
+	
+	MOVI	2,-14 // reg1 < reg2 = reg3
+	
+	BL	1,2,true
+	halt
+true:	NOP
+	ADDI	3,3,1
+	halt

@@ -1,0 +1,9 @@
+        MOVI    1,0x0002
+        // Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,0x0005
+        // reg1 < reg2 = reg3
+        BL      1,2,true
+        BEQ     0,0,false
+true:   NOP
+        ADDI    3,3,1
+false:  halt

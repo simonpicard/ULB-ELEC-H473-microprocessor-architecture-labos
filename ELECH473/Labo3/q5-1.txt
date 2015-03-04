@@ -1,0 +1,23 @@
+        MOVI    1,0x0002
+        // Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,0x0005
+        // reg1 < reg2 = reg3
+        BEQ     1,2,false // If the two operands are equals, the result is false.
+        MOVI    7,0x8000
+
+        NAND    6,7,1
+        NAND    6,6,6
+        NAND    5,7,2
+        NAND    5,5,5
+        BEQ     5,6,loop // Handling of operands with different signs.
+        BEQ     6,7,true
+        BEQ     0,0,false
+loop:   NOP
+        BEQ     1,0,true // The two operands are decremented, the first one which attains zero is the lowest one.
+        BEQ     2,0,false
+        ADDI    1,1,-1
+        ADDI    2,2,-1
+        BEQ     0,0,loop
+true:   NOP
+        ADDI    3,3,1
+false:  halt

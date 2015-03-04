@@ -1,0 +1,87 @@
+        MOVI    1,0xffff
+        // Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,0xffff
+
+        SW      0,0,0
+        SW      0,0,1
+        SW      0,0,2
+        ADDI    7,0,1
+looptmp:        BEQ     7,0,end
+        SW      7,0,0
+        NAND    6,2,7
+        NAND    6,6,6
+        BEQ     6,7,true
+        LW      7,0,1
+        NOP
+        ADDI    7,7,1
+        SW      7,0,1
+        BEQ     0,0,false
+true:   LW      7,0,1
+        ADDI    5,0,16
+        SUB     5,5,7
+        SUB     5,0,5
+        SHL     6,1,5
+        ADD     4,4,6
+        SHL     6,1,7
+        ADDI    7,7,1
+        SW      7,0,1
+        SW      0,0,2
+        MOVI    5,0x8000
+
+        NAND    7,5,3
+        NAND    7,7,7
+        BEQ     7,5,one1
+        BEQ     0,0,end1
+one1:   LW      7,0,2
+        ADDI    7,7,1
+        SW      7,0,2
+        MOVI    7,0x7FFF
+
+        NAND    3,7,3
+        NAND    3,3,3
+end1:   NAND    7,5,6
+        NAND    7,7,7
+        BEQ     7,5,one2
+        BEQ     0,0,end2
+end:    BEQ     0,0,endtmp
+loop:   BEQ     0,0,looptmp
+false:  BEQ     0,0,falsetmp
+one2:   LW      7,0,2
+        ADDI    7,7,1
+        SW      7,0,2
+        MOVI    7,0x7FFF
+
+        NAND    6,7,6
+        NAND    6,6,6
+end2:   ADD     3,3,6
+        NAND    7,5,3
+        NAND    7,7,7
+        BEQ     7,5,one3
+        BEQ     0,0,end3
+one3:   LW      7,0,2
+        ADDI    7,7,1
+        SW      7,0,2
+        MOVI    7, 0x7FFF
+
+        NAND    3,7,3
+        NAND    3,3,3
+end3:   LW      7,0,2
+        ADDI    5,0,2
+        NAND    7,7,5
+        NAND    7,7,7
+        BEQ     7,5,carry
+        BEQ     0,0,endcarry
+carry:  ADDI    4,4,1
+endcarry:       LW      7,0,2
+        ADDI    5,0,1
+        NAND    7,7,5
+        NAND    7,7,7
+        BEQ     7,5,replace
+        BEQ     0,0,false
+replace:        MOVI    7,0x8000
+        ADD     3,3,7
+falsetmp:       LW      7,0,0
+        ADDI    6,0,1
+        SHL     7,7,6
+        BEQ     0,0,loop
+endtmp: halt

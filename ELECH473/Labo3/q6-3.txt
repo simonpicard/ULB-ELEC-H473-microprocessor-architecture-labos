@@ -1,5 +1,5 @@
 			MOVI	1,0xffff
-			
+			// Authors : Arnaud Rosette, Simon Picard
 			MOVI	2,0xffff
 			
 			MOVI    5,0x8000
@@ -15,7 +15,7 @@ easy:   	BEQ     6,5,hard
 			ADD     5,0,3
 			ADD     3,0,4
 			ADD     4,0,5
-			halt
+			BEQ     0,0,end5
 other:  	BEQ     5,7,reg2neg // we consider reg2 always with MSB equal to 1 (reg2 neg)
 			ADD     6,0,1 // If not, we swap
 			ADD     1,0,2
@@ -66,7 +66,7 @@ end1:   	NAND    1,6,7
 			BEQ     1,7,one5
 			BEQ     0,0,end5
 	one5:   ADDI    4,4,1
-	end5:   halt
+	end5:   BEQ     0,0,finaltemp1
 hard:		MOVI   5,0x8000
 
 			SUB    1,1,5
@@ -119,6 +119,8 @@ end9:		ADDI   1,0,2
 			NAND   6,6,6
 			BEQ    6,1,one10
 			BEQ    0,0,end10
+                BEQ     0,0,one10
+finaltemp1:     BEQ     0,0,finaltemp2
 one10:		ADDI   4,4,1
 end10:		LW     1,0,4
 			LW     2,0,5
@@ -154,6 +156,8 @@ end14:		ADDI   1,0,2
 			NAND   6,6,6
 			BEQ    6,1,one15
 			BEQ    0,0,end15
+                BEQ     0,0,one15
+finaltemp2:     BEQ     0,0,end20
 one15:		ADDI   4,4,1
 end15:		LW     1,0,6
 			LW     2,0,7

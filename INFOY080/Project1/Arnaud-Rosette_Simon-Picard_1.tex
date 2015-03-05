@@ -16,7 +16,7 @@ The org.gjt.sp.jedit.buffer.KillRing class is an instance of the singleton patte
 
 \subsubsection{Purpose}
 Creational pattern.
-\subsubsection{Participants}
+\subsubsection[Participants]{Participants\footnote[1]{The participants are those described in the book : Design Patterns: Elements of Reusable Object-Oriented Software (Gamma, Helm, Johnson, Vlissides)}}
 The KillRing class is the singleton class.
 \subsubsection{Class diagram}
 \begin{center}
@@ -35,7 +35,7 @@ The org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory class is an example of th
 
 \subsubsection{Purpose}
 Creational pattern.
-\subsubsection{Participants}
+\subsubsection[Participants]{Participants\footnotemark[1]}
 The participants are the classes : org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory, org.gjt.sp.jedit.gui.statusbar.BufferSetWidgetFactory, org.gjt.sp.jedit.gui.statusbar.BufferSetWidgetFactory.BufferSetWidget, org.gjt.sp.jedit.gui.statusbar.Widget and org.gjt.sp.jedit.gui.StatusBar.
 
 \begin{itemize}
@@ -60,7 +60,7 @@ In this situation, the abstract factory pattern is used to let a StatusBar objec
 
 \subsubsection{Purpose}
 
-\subsubsection{Participants}
+\subsubsection[Participants]{Participants\footnotemark[1]}
 
 \subsubsection{Class diagram}
 
@@ -72,7 +72,7 @@ The org.gjt.sp.jedit.buffer.BufferAdapter class is an example of the adapter pat
 
 \subsubsection{Purpose}
 Structural pattern.
-\subsubsection{Participants}
+\subsubsection[Participants]{Participants\footnotemark[1]}
 The participants are the classes : org.gjt.sp.jedit.buffer.BufferAdapter, org.gjt.sp.jedit.buffer.BufferListener, a client and a target.
 \begin{itemize}
  \item \textbf{BufferAdapter} : Adapter
@@ -95,7 +95,7 @@ In this case, the adapter pattern is not used to let two incompatible existing c
 The org.gjt.sp.jedit.visitors.JEditVisitor class is an example of the visitor pattern.
 \subsubsection{Purpose}
 Behavioral pattern.
-\subsubsection{Participants}
+\subsubsection[Participants]{Participants\footnotemark[1]}
 The participants are the classes : org.gjt.sp.jedit.visitors.JEditVisitor, org.gjt.sp.jedit.visitors.JEditVisitorAdapter, org.gjt.sp.jedit.View.SetCursorVisitor, org.gjt.sp.jedit.visitors.SaveCaretInfoVisitor, org.gjt.sp.jedit.jEdit, org.gjt.sp.jedit.View, org.gjt.sp.jedit.EditPane and org.gjt.sp.jedit.textarea.JEditTextArea.
 \begin{itemize}
  \item \textbf{JEditVisitor} : Visitor
@@ -124,33 +124,40 @@ The classes of the elements of the datastructure (View, EditPane, JEditTextArea)
 \section{Exercise 2 : Recognize Design Patterns}
 The design patterns found are the command pattern (behavioural pattern) and the facade pattern (structural pattern).
 
+\subsection{Class diagram}
+\begin{center}
+\begin{figure}[h]
+  \centerline{\includegraphics[width=0.9\textwidth]{undomanager-class-diagram.pdf}}
+  \caption{UndoManager class diagram}
+\end{figure}
+\end{center}
+
 \subsection{Command pattern}
 \subsubsection{Purpose}
 Behavioral pattern.
-\subsubsection{Participants}
-
-\subsubsection{Class diagram}
+\subsubsection[Participants]{Participants\footnotemark[1]}
+\begin{itemize}
+ \item \textbf{Edit} : Command
+ \item \textbf{Insert} : Concrete Command
+ \item \textbf{Remove} : Concrete Command
+ \item \textbf{Replace} : Concrete Command
+ \item \textbf{CompressedReplace} : Concrete Command
+ \item \textbf{CompoundEdit} : Concrete Command
+ \item \textbf{UndoManager} : Client, Invoker
+ \item \textbf{JEditBuffer} : Receiver
+\end{itemize}
 
 \subsubsection{Concrete situation description}
-
+The command design pattern is used here to be able to store the actions (insert, remove, replace, ...) performed on a text (JEditBuffer). Thanks to this design pattern, the application can keep track of the actions performed during its own execution and so the application is able to undo and redo these actions. \\
+The difference between this concrete case and the theoritical case is that the client and the invoker are the same object in the practical one while they are two different objects in the theory.
 
 \subsection{Facade pattern}
 \subsubsection{Purpose}
 Structural pattern.
-\subsubsection{Participants}
-
-\subsubsection{Class diagram}
+\subsubsection[Participants]{Participants\footnotemark[1]}
 
 \subsubsection{Concrete situation description}
 
-Command participants :
-\begin{itemize}
-\item Command : Edit
-\item ConcreteCommand : Insert, Remove, Replace, CompressedReplace
-\item Client :
-\item Invoker : JEditBuffer
-\item Receiver : UndoManager.buffer (JEditBuffer)
-\end{itemize}
 \section{Exercise 3 : Coupling and Cohesion}
 \subsection{Question a}
 \begin{itemize}

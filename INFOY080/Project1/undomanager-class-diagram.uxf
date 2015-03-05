@@ -4,12 +4,15 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>140</x>
-      <y>119</y>
-      <w>98</w>
-      <h>21</h>
+      <x>168</x>
+      <y>161</y>
+      <w>105</w>
+      <h>35</h>
     </coordinates>
-    <panel_attributes>UndoManager</panel_attributes>
+    <panel_attributes>UndoManager
+--
+-buffer: JEditBuffer
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -159,5 +162,189 @@
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>21;21;259;84</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>560</x>
+      <y>42</y>
+      <w>155</w>
+      <h>111</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=0..1
+m2=0..1
+previous</panel_attributes>
+    <additional_attributes>21;77;21;35;119;35;119;98;84;98</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>357</x>
+      <y>49</y>
+      <w>139</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=0..1
+m2=0..1
+next</panel_attributes>
+    <additional_attributes>126;70;126;35;35;35;35;91;77;91</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>154</x>
+      <y>63</y>
+      <w>133</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>JEditBuffer
+--
+-undoMgr: UndoManager
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>252</x>
+      <y>147</y>
+      <w>195</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=0..2
+contains queues of</panel_attributes>
+    <additional_attributes>21;35;182;35</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>175</x>
+      <y>77</y>
+      <w>34</w>
+      <h>97</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>21;84;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>63</x>
+      <y>42</y>
+      <w>104</w>
+      <h>237</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+performs
+actions on</panel_attributes>
+    <additional_attributes>91;35;49;35;49;224</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>7</x>
+      <y>196</y>
+      <w>370</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>105;21;21;21;21;182;357;182;357;119</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>343</x>
+      <y>294</y>
+      <w>216</w>
+      <h>97</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>21;84;112;84;112;42;203;42;203;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>434</x>
+      <y>357</y>
+      <w>104</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>21;21;91;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>462</x>
+      <y>294</y>
+      <w>405</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>21;84;21;140;392;140;392;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>203</x>
+      <y>77</y>
+      <w>74</w>
+      <h>97</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+invokes
+actions</panel_attributes>
+    <additional_attributes>42;84;42;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>175</x>
+      <y>175</y>
+      <w>74</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+creates</panel_attributes>
+    <additional_attributes>42;91;42;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>196</x>
+      <y>224</y>
+      <w>216</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>203;42;203;21;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>378</x>
+      <y>224</y>
+      <w>230</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>217;42;217;21;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>574</x>
+      <y>224</y>
+      <w>195</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>182;42;182;21;21;21</additional_attributes>
   </element>
 </diagram>

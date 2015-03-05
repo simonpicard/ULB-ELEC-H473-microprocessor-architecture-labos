@@ -9,9 +9,9 @@
 \author{Arnaud Rosette, Simon Picard}
 
 \begin{document}
-\maketitle%TODO : mettre une note en bas de page pour les participants pour dire qu'ils font reference au livre : design patterns book.
+\maketitle
 \section{Exercise 1 : Find Instances of Design Patterns}
-\subsection{Singleton}%org.gjt.sp.jedit.syntax.ModeProvider
+\subsection{Singleton}
 The org.gjt.sp.jedit.buffer.KillRing class is an instance of the singleton pattern.
 
 \subsubsection{Purpose}
@@ -27,7 +27,7 @@ The KillRing class is the singleton class.
 \end{center}
 \subsubsection{Concrete situation description}
 In this situation, the singleton pattern is used to keep track of deleted text in a single place in the application.\\
-The constructor is here public. However, the common usage of the singleton pattern uses a private constructor in order to only have one instance of this class living in the system. The constructor is here made public because the plugins may want to create their own KillRing. 
+The constructor is here public. However, the common usage of the singleton pattern uses a private constructor in order to only have one instance of this class living in the system. The constructor is here made public because the plug-ins may want to create their own KillRing. 
 
 
 \subsection{Abstract Factory}
@@ -79,7 +79,9 @@ The participants are the classes : org.gjt.sp.jedit.buffer.BufferListener, org.g
 \end{figure}
 \end{center}
 \subsubsection{Concrete situation description}
-
+A JEditBuffer object represents the content of an open text file that resides in the main memory. So, when the state of a JEditBuffer object is modified, the objects that have to modify their own state according to the state of the JEditBuffer object are notified because they previously registered themselves to the JEditBuffer object.\\
+In this case, the JEditBuffer class has two roles : subject and concrete subject. These two roles belong to different classes in the theoretical pattern.\\
+In the class diagram, we only show methods that are relevant for the insert action. 
 
 \newpage
 \subsection{Adapter}
@@ -131,13 +133,13 @@ The participants are the classes : org.gjt.sp.jedit.visitors.JEditVisitor, org.g
 \end{figure}
 \end{center}
 \subsubsection{Concrete situation description}
-In this situation, the visitor design pattern is used to perform different types of action (set cursor, save caret) on a datastructure containing different types of objects. The datastructure is hold in the jEdit class (main class of the application). jEdit contains a current View and a View has references about its previous and next View. So the Views form a list structure. Further, each View may contain an EditPane and each EditPane contains a JEditTextArea.\\
-A View may want to apply a specific action on the entire datastructure. In order to perform this action on the entire datastructure without depending on the concrete implementation of the elements of this datastructure, the View will use the visit method of the jEdit class by giving to it the concrete action that has to be performed, this method will visit each element of the datastructure and perform the concrete action on it.\\
-The classes of the elements of the datastructure (View, EditPane, JEditTextArea) do not share a common interface. However, the theoritical version of this pattern uses a common interface between the different elements of the datastructure.
+In this situation, the visitor design pattern is used to perform different types of action (set cursor, save caret) on a data structure containing different types of objects. The data structure is hold in the jEdit class (main class of the application). jEdit contains a current View and a View has references about its previous and next View. So the Views form a list structure. Further, each View may contain an EditPane and each EditPane contains a JEditTextArea.\\
+A View may want to apply a specific action on the entire data structure. In order to perform this action on the entire data structure without depending on the concrete implementation of the elements of this data structure, the View will use the visit method of the jEdit class by giving to it the concrete action that has to be performed, this method will visit each element of the data structure and perform the concrete action on it.\\
+The classes of the elements of the data structure (View, EditPane, JEditTextArea) do not share a common interface. However, the theoretical version of this pattern uses a common interface between the different elements of the data structure.
 
 
 \section{Exercise 2 : Recognize Design Patterns}
-The design patterns found are the command pattern (behavioural pattern) and the facade pattern (structural pattern).
+The design patterns found are the command pattern (behavioral pattern) and the facade pattern (structural pattern).
 
 \subsection{Class diagram}
 \begin{center}
@@ -164,7 +166,7 @@ Behavioral pattern.
 
 \subsubsection{Concrete situation description}
 The command design pattern is used here to be able to store the actions (insert, remove, replace, ...) performed on a text (JEditBuffer). Thanks to this design pattern, the application can keep track of the actions performed during its own execution and so the application is able to undo and redo these actions. \\
-The difference between this concrete case and the theoritical case is that the client and the invoker are the same object in the practical one while they are two different objects in the theory.
+The difference between this concrete case and the theoretical case is that the client and the invoker are the same object in the practical one while they are two different objects in the theory.
 
 \subsection{Facade pattern}
 \subsubsection{Purpose}

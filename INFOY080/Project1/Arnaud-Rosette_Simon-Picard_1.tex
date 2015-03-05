@@ -155,8 +155,19 @@ The difference between this concrete case and the theoritical case is that the c
 \subsubsection{Purpose}
 Structural pattern.
 \subsubsection[Participants]{Participants\footnotemark[1]}
+\begin{itemize}
+ \item \textbf{Edit} : Subsystem class
+ \item \textbf{Insert} : Subsystem class
+ \item \textbf{Remove} : Subsystem class
+ \item \textbf{Replace} : Subsystem class
+ \item \textbf{CompressedReplace} : Subsystem class
+ \item \textbf{CompoundEdit} : Subsystem class
+ \item \textbf{UndoManager} : Facade
+ \item \textbf{JEditBuffer} : Client
+\end{itemize}
 
 \subsubsection{Concrete situation description}
+The facade pattern is used to hide the action classes (Insert, Remove, ...) from the rest of the application. If a class want to use these classes, it has to use the UndoManager class (facade).
 
 \section{Exercise 3 : Coupling and Cohesion}
 \subsection{Question a}

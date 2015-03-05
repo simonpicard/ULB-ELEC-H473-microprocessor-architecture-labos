@@ -195,14 +195,18 @@ The facade pattern is used to hide the action classes (Insert, Remove, ...) from
 \subsection{Question b}
 \subsubsection{MiscUtilities}
 The cohesion type is coincidental because this class regroup all the small functions needed at several places in the projects which therefore do not have anything in common.\\
+It is a low type of cohesion, even the worst one. So it is indeed a bad type of cohesion.\\
 To improve the cohesion the class could be divided in several sub classes which take care of a single feature, by example, there is several functions which focus the path, they could be regrouped in one class in order to have a logical cohesion.
 \subsubsection{GUIUtilities}
 This class has a logical cohesion, the class handle all the function to create the GUI, they are grouped in this class because they all act in the same purpose even though they do not interact with each other.\\
+It is a low type of cohesion. So it is a bad type of cohesion.\\
 The class could be sub divided to focus on single element of the GUI per classes but it will only improve the logical cohesion, in order to achieve a functional cohesion, the functions could be dispatched where they are actually useful if possible, i.e if they are not used at several places in the project.
 \subsubsection{io/VFSFile.java}
-This class represent an ADT, therefore the cohesion is maximal.
+This class represents an ADT, therefore the cohesion is maximal.\\
+The cohesion is high in this class. It is the highest type of cohesion and so it is a good type of cohesion.
 \subsection{Question c}
-It seems that the coupling between these two classes is of the type Data because some data shared between the modules are done through parameters (e.g advanceSplashProgress).
+The coupling between these two classes is of the type Data because some data shared between the modules are done through parameters (e.g advanceSplashProgress).\\
+It is a quite loose type of coupling and so it is a quite good one.
 
 
 \end{document}

@@ -30,8 +30,8 @@ In this situation, the singleton pattern is used to keep track of deleted text i
 The constructor is here public. However, the common usage of the singleton pattern uses a private constructor in order to only have one instance of this class living in the system. The constructor is here made public because the plugins may want to create their own KillRing. 
 
 
-\subsection{Abstract Factory}%org.gjt.sp.jedit.syntax.ModeProvider, org.gjt.sp.jedit.io.VFSManager, org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory (abstract factory) avec BufferSetWidgetFactory (concrete factory) avec Widget (abstract product) avec org.gjt.sp.jedit.gui.StatusBar (client)
-The org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory class is an example of the abstract factory pattern.
+\subsection{Abstract Factory}
+The org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory interface is an example of the abstract factory pattern.
 
 \subsubsection{Purpose}
 Creational pattern.
@@ -57,26 +57,42 @@ The participants are the classes : org.gjt.sp.jedit.gui.statusbar.StatusWidgetFa
 In this situation, the abstract factory pattern is used to let a StatusBar object creating different kind of Widget without specifying their concrete class. 
 
 \subsection{Observer}
+The org.gjt.sp.jedit.buffer.BufferListener interface is an example of the observer pattern.
 
 \subsubsection{Purpose}
-
+Behavioral pattern.
 \subsubsection[Participants]{Participants\footnotemark[1]}
+The participants are the classes : org.gjt.sp.jedit.buffer.BufferListener, org.gjt.sp.jedit.buffer.BufferAdapter, org.gjt.sp.jedit.textarea.ElasticTabStopBufferListener and org.gjt.sp.jedit.buffer.JEditBuffer.
+
+\begin{itemize}
+ \item \textbf{BufferListener} : Observer
+ \item \textbf{BufferAdapter} : does not belong to this design pattern
+ \item \textbf{ElasticTabStopBufferListener} : Concrete Observer
+ \item \textbf{JEditBuffer} : Subject, Concrete Subject
+\end{itemize}
 
 \subsubsection{Class diagram}
-
+\begin{center}
+\begin{figure}[h]
+  \centerline{\includegraphics[width=0.9\textwidth]{observer-bufferlistener-class-diagram.pdf}}
+  \caption{BufferListener class diagram}
+\end{figure}
+\end{center}
 \subsubsection{Concrete situation description}
 
 
+\newpage
 \subsection{Adapter}
 The org.gjt.sp.jedit.buffer.BufferAdapter class is an example of the adapter pattern.
 
 \subsubsection{Purpose}
 Structural pattern.
 \subsubsection[Participants]{Participants\footnotemark[1]}
-The participants are the classes : org.gjt.sp.jedit.buffer.BufferAdapter, org.gjt.sp.jedit.buffer.BufferListener, a client and a target.
+The participants are the classes : org.gjt.sp.jedit.buffer.BufferAdapter, org.gjt.sp.jedit.buffer.BufferListener, org.gjt.sp.jedit.textarea.ElasticTabStopBufferListener and a client.
 \begin{itemize}
  \item \textbf{BufferAdapter} : Adapter
  \item \textbf{BufferListener} : Adaptee
+ \item \textbf{ElasticTabStopBufferListener} : Target
 \end{itemize}
 
 \subsubsection{Class diagram}
@@ -87,12 +103,11 @@ The participants are the classes : org.gjt.sp.jedit.buffer.BufferAdapter, org.gj
 \end{figure}
 \end{center}
 \subsubsection{Concrete situation description}
-In this situation, the BufferListener interface contains several methods but not all of them are necessary for its potential subclasses. The BufferAdapter abstract class implements all the methods of the BufferListener interface but these methods contain an empty body in order to let the next Target classes only implement the methods they need.\\
+In this situation, the BufferListener interface contains several methods but not all of them are necessary for its potential subclasses. The BufferAdapter abstract class implements all the methods of the BufferListener interface but these methods contain an empty body in order to let the next Target (ElasticTabStopBufferListener) classes only implement the methods they need.\\
 In this case, the adapter pattern is not used to let two incompatible existing classes work together but this pattern is used to let new concrete classes only implement the methods they need from this interface without implementing the methods which are not useful for these concrete classes.
 
-\newpage
 \subsection{Visitor}
-The org.gjt.sp.jedit.visitors.JEditVisitor class is an example of the visitor pattern.
+The org.gjt.sp.jedit.visitors.JEditVisitor interface is an example of the visitor pattern.
 \subsubsection{Purpose}
 Behavioral pattern.
 \subsubsection[Participants]{Participants\footnotemark[1]}

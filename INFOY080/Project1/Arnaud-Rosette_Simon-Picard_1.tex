@@ -9,7 +9,7 @@
 \author{Arnaud Rosette, Simon Picard}
 
 \begin{document}
-\maketitle
+\maketitle%TODO : mettre une note en bas de page pour les participants pour dire qu'ils font reference au livre : design patterns book.
 \section{Exercise 1 : Find Instances of Design Patterns}
 \subsection{Singleton}%org.gjt.sp.jedit.syntax.ModeProvider
 The org.gjt.sp.jedit.buffer.KillRing class is an instance of the singleton pattern.
@@ -31,12 +31,12 @@ The constructor is here public. However, the common usage of the singleton patte
 
 
 \subsection{Abstract Factory}%org.gjt.sp.jedit.syntax.ModeProvider, org.gjt.sp.jedit.io.VFSManager, org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory (abstract factory) avec BufferSetWidgetFactory (concrete factory) avec Widget (abstract product) avec org.gjt.sp.jedit.gui.StatusBar (client)
-The org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory is an example of the abstract factory pattern.
+The org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory class is an example of the abstract factory pattern.
 
 \subsubsection{Purpose}
 Creational pattern.
 \subsubsection{Participants}
-The participants are the classes : org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory, org.gjt.sp.jedit.gui.statusbar.BufferSetWidgetFactory, org.gjt.sp.jedit.gui.statusbar.BufferSetWidget, org.gjt.sp.jedit.gui.statusbar.Widget and org.gjt.sp.jedit.gui.StatusBar.
+The participants are the classes : org.gjt.sp.jedit.gui.statusbar.StatusWidgetFactory, org.gjt.sp.jedit.gui.statusbar.BufferSetWidgetFactory, org.gjt.sp.jedit.gui.statusbar.BufferSetWidgetFactory.BufferSetWidget, org.gjt.sp.jedit.gui.statusbar.Widget and org.gjt.sp.jedit.gui.StatusBar.
 
 \begin{itemize}
  \item \textbf{StatusWidgetFactory} : Abstract Factory
@@ -49,7 +49,7 @@ The participants are the classes : org.gjt.sp.jedit.gui.statusbar.StatusWidgetFa
 \subsubsection{Class diagram}
 \begin{center}
 \begin{figure}[h]
-  \centerline{\includegraphics[width=0.7\textwidth]{abstractfactory-statuswidgetfactory-class-diagram.pdf}}
+  \centerline{\includegraphics[width=0.9\textwidth]{abstractfactory-statuswidgetfactory-class-diagram.pdf}}
   \caption{StatusWidgetFactory class diagram}
 \end{figure}
 \end{center}
@@ -68,7 +68,7 @@ In this situation, the abstract factory pattern is used to let a StatusBar objec
 
 
 \subsection{Adapter}
-The org.gjt.sp.jedit.buffer.BufferAdapter is an example of the adapter pattern.
+The org.gjt.sp.jedit.buffer.BufferAdapter class is an example of the adapter pattern.
 
 \subsubsection{Purpose}
 Structural pattern.
@@ -80,14 +80,53 @@ The participants are the classes : org.gjt.sp.jedit.buffer.BufferAdapter, org.gj
 \end{itemize}
 
 \subsubsection{Class diagram}
-
+\begin{center}
+\begin{figure}[h]
+  \centerline{\includegraphics[width=0.5\textwidth]{adapter-bufferadapter-class-diagram.pdf}}
+  \caption{BufferAdapter class diagram}
+\end{figure}
+\end{center}
 \subsubsection{Concrete situation description}
+In this situation, the BufferListener interface contains several methods but not all of them are necessary for its potential subclasses. The BufferAdapter abstract class implements all the methods of the BufferListener interface but these methods contain an empty body in order to let the next Target classes only implement the methods they need.\\
+In this case, the adapter pattern is not used to let two incompatible existing classes work together but this pattern is used to let new concrete classes only implement the methods they need from this interface without implementing the methods which are not useful for these concrete classes.
 
-
+\newpage
 \subsection{Visitor}
-
+The org.gjt.sp.jedit.visitors.JEditVisitor class is an example of the visitor pattern.
 \subsubsection{Purpose}
+Behavioral pattern.
+\subsubsection{Participants}
+The participants are the classes : org.gjt.sp.jedit.visitors.JEditVisitor, org.gjt.sp.jedit.visitors.JEditVisitorAdapter, org.gjt.sp.jedit.View.SetCursorVisitor, org.gjt.sp.jedit.visitors.SaveCaretInfoVisitor, org.gjt.sp.jedit.jEdit, org.gjt.sp.jedit.View, org.gjt.sp.jedit.EditPane and org.gjt.sp.jedit.textarea.JEditTextArea.
+\begin{itemize}
+ \item \textbf{JEditVisitor} : Visitor
+ \item \textbf{JEditVisitorAdapter} : an Adapter that does not belong to this pattern
+ \item \textbf{SetCursorVisitor} : Concrete Visitor
+ \item \textbf{SaveCaretInfoVisitor} : Concrete Visitor
+ \item \textbf{jEdit} : Object Structure
+ \item \textbf{View} : Concrete Element and Client
+ \item \textbf{EditPane} : Concrete Element
+ \item \textbf{JEditTextArea} : Concrete Element
+\end{itemize}
 
+\subsubsection{Class diagram}
+\begin{center}
+\begin{figure}[h]
+  \centerline{\includegraphics[width=0.9\textwidth]{visitor-jeditvisitor-class-diagram.pdf}}
+  \caption{JEditVisitor class diagram}
+\end{figure}
+\end{center}
+\subsubsection{Concrete situation description}
+In this situation, the visitor design pattern is used to perform different types of action (set cursor, save caret) on a datastructure containing different types of objects. The datastructure is hold in the jEdit class (main class of the application). jEdit contains a current View and a View has references about its previous and next View. So the Views form a list structure. Further, each View may contain an EditPane and each EditPane contains a JEditTextArea.\\
+A View may want to apply a specific action on the entire datastructure. In order to perform this action on the entire datastructure without depending on the concrete implementation of the elements of this datastructure, the View will use the visit method of the jEdit class by giving to it the concrete action that has to be performed, this method will visit each element of the datastructure and perform the concrete action on it.\\
+The classes of the elements of the datastructure (View, EditPane, JEditTextArea) do not share a common interface. However, the theoritical version of this pattern uses a common interface between the different elements of the datastructure.
+
+
+\section{Exercise 2 : Recognize Design Patterns}
+The design patterns found are the command pattern (behavioural pattern) and the facade pattern (structural pattern).
+
+\subsection{Command pattern}
+\subsubsection{Purpose}
+Behavioral pattern.
 \subsubsection{Participants}
 
 \subsubsection{Class diagram}
@@ -95,18 +134,15 @@ The participants are the classes : org.gjt.sp.jedit.buffer.BufferAdapter, org.gj
 \subsubsection{Concrete situation description}
 
 
-\section{Exercise 2 : Recognize Design Patterns}
-Design pattern found :
-\begin{itemize}
-\item Composite, structural design pattern
-\item Command, behavioural design pattern
-\end{itemize}
-Composite participants :
-\begin{itemize}
-\item Component : CoumpoundEdit
-\item Leaf : Edit
-\item Composite : CoumpoundEdit
-\end{itemize}
+\subsection{Facade pattern}
+\subsubsection{Purpose}
+Structural pattern.
+\subsubsection{Participants}
+
+\subsubsection{Class diagram}
+
+\subsubsection{Concrete situation description}
+
 Command participants :
 \begin{itemize}
 \item Command : Edit

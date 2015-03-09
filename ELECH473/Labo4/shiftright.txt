@@ -1,0 +1,23 @@
+        MOVI    1,0xffff
+        // Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,15
+		
+        BEQ     2,0,still
+shift:  BEQ     2,0,done
+        ADD     6,0,0
+        ADDI    3,0,1
+        ADDI    4,0,2
+loop:   BEQ     4,0,end
+        NAND    5,1,4
+        NAND    5,5,5
+        BEQ     5,4,true
+        BEQ     0,0,false
+true:   ADD     6,6,3
+false:  ADD     3,3,3
+        ADD     4,4,4
+        BEQ     0,0,loop
+end:    ADDI    2,2,-1
+        ADD     1,6,0
+        BEQ     0,0,shift
+still:  ADD     6,1,0
+done:   halt

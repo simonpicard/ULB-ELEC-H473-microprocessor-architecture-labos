@@ -1,0 +1,135 @@
+            MOVI    1,0xffff
+            // Authors : Arnaud Rosette, Simon Picard
+            MOVI    2,0xffff
+
+            SW      0,0,0
+            SW      0,0,1
+            SW      0,0,2
+            ADDI    7,0,1
+looptmp2:    BEQ     7,0,end
+            SW      7,0,0
+            NAND    6,2,7
+            NAND    6,6,6
+            BEQ     6,7,true
+            LW      7,0,1
+            NOP
+            ADDI    7,7,1
+            SW      7,0,1
+            BEQ     0,0,false
+true:       LW      7,0,1
+            ADDI    5,0,16
+subloop:    BEQ     7,0,subend
+            ADDI    5,5,-1
+            ADDI    7,7,-1
+            BEQ     0,0,subloop
+subend:     LW      7,0,1
+            SW      1,0,11 // saving reg
+            SW      2,0,12
+            SW      3,0,13
+            SW      4,0,14
+            SW      5,0,15
+            ADD     2,0,5
+            BEQ     2,0,srstill
+sr:         BEQ     2,0,srdone
+            ADD     6,0,0
+            ADDI    3,0,1
+            ADDI    4,0,2
+srloop:     BEQ     4,0,srend
+            NAND    5,1,4
+            NAND    5,5,5
+            BEQ     5,4,srtrue
+            BEQ     0,0,srfalse
+srtrue:     ADD     6,6,3
+srfalse:    ADD     3,3,3
+            ADD     4,4,4
+            BEQ     0,0,srloop
+end:        BEQ     0,0,endtmp1
+looptmp1:   BEQ     0,0,looptmp2
+false:      BEQ     0,0,falsetmp1
+srend:      ADDI    2,2,-1
+            ADD     1,6,0
+            BEQ     0,0,sr
+srstill:    ADD     6,1,0
+srdone:     LW      1,0,11 // loading reg
+            LW      2,0,12
+            LW      3,0,13
+            LW      4,0,14
+            LW      5,0,15
+            ADD     4,4,6
+            SW      2,0,12
+            ADD     2,0,7
+            ADD     6,0,1
+slloop0:    BEQ     2,0,slend0
+            ADD     6,6,6
+            ADDI    2,2,-1
+            BEQ     0,0,slloop0
+slend0:     LW      2,0,12
+            ADDI    7,7,1
+            SW      7,0,1
+            SW      0,0,2
+            MOVI    5,0x8000
+
+            NAND    7,5,3
+            NAND    7,7,7
+            BEQ     7,5,one1
+            BEQ     0,0,end1
+one1:       LW      7,0,2
+            ADDI    7,7,1
+            SW      7,0,2
+            MOVI    7,0x7FFF
+
+            NAND    3,7,3
+            NAND    3,3,3
+end1:       NAND    7,5,6
+            NAND    7,7,7
+            BEQ     7,5,one2
+            BEQ     0,0,end2
+endtmp1:    BEQ     0,0,endtmp2
+loop:       BEQ     0,0,looptmp1
+falsetmp1:  BEQ     0,0,falsetmp2
+one2:       LW      7,0,2
+            ADDI    7,7,1
+            SW      7,0,2
+            MOVI    7,0x7FFF
+
+            NAND    6,7,6
+            NAND    6,6,6
+end2:       ADD     3,3,6
+            NAND    7,5,3
+            NAND    7,7,7
+            BEQ     7,5,one3
+            BEQ     0,0,end3
+one3:       LW      7,0,2
+            ADDI    7,7,1
+            SW      7,0,2
+            MOVI    7, 0x7FFF
+
+            NAND    3,7,3
+            NAND    3,3,3
+end3:       LW      7,0,2
+            ADDI    5,0,2
+            NAND    7,7,5
+            NAND    7,7,7
+            BEQ     7,5,carry
+            BEQ     0,0,endcarry
+carry:      ADDI    4,4,1
+endcarry:           LW      7,0,2
+            ADDI    5,0,1
+            NAND    7,7,5
+            NAND    7,7,7
+            BEQ     7,5,replace
+            BEQ     0,0,falsetmp2
+replace:    MOVI    7,0x8000
+
+            ADD     3,3,7
+falsetmp2:  LW      7,0,0
+            ADDI    6,0,1
+            SW      2,0,12
+            ADD     2,6,0
+slloop1:    BEQ     2,0,slend1
+            ADD     7,7,7
+            ADDI    2,2,-1
+            BEQ     0,0,slloop1
+slend1:     LW      2,0,12
+            BEQ     0,0,loop
+endtmp2:     halt

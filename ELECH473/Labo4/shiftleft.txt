@@ -1,0 +1,10 @@
+        MOVI    1,1
+        // Authors : Arnaud Rosette, Simon Picard
+        MOVI    2,5
+		
+            ADD     6,0,1
+slloop:     BEQ     2,0,slend
+            ADD     6,6,6
+            ADDI    2,2,-1
+            BEQ     0,0,slloop
+slend:        

@@ -6,13 +6,12 @@
             SW      0,0,1
             SW      0,0,2
             ADDI    7,0,1
-looptmp2:    BEQ     7,0,end
+looptmp2:   BEQ     7,0,end
             SW      7,0,0
             NAND    6,2,7
             NAND    6,6,6
             BEQ     6,7,true
             LW      7,0,1
-            NOP
             ADDI    7,7,1
             SW      7,0,1
             BEQ     0,0,false
@@ -28,7 +27,7 @@ subend:     LW      7,0,1
             SW      3,0,13
             SW      4,0,14
             SW      5,0,15
-            ADD     2,0,5
+            ADD     2,0,5 // begin SHL     6,1,5 (right shift)
             BEQ     2,0,srstill
 sr:         BEQ     2,0,srdone
             ADD     6,0,0
@@ -50,20 +49,20 @@ srend:      ADDI    2,2,-1
             ADD     1,6,0
             BEQ     0,0,sr
 srstill:    ADD     6,1,0
-srdone:     LW      1,0,11 // loading reg
+srdone:     LW      1,0,11  // end SHL     6,1,5 (right shift)
             LW      2,0,12
             LW      3,0,13
             LW      4,0,14
             LW      5,0,15
             ADD     4,4,6
             SW      2,0,12
-            ADD     2,0,7
+            ADD     2,0,7  // begin SHL     6,1,7 (left shift)
             ADD     6,0,1
 slloop0:    BEQ     2,0,slend0
             ADD     6,6,6
             ADDI    2,2,-1
             BEQ     0,0,slloop0
-slend0:     LW      2,0,12
+slend0:     LW      2,0,12 // end SHL     6,1,7 (left shift)
             ADDI    7,7,1
             SW      7,0,1
             SW      0,0,2
@@ -125,11 +124,11 @@ replace:    MOVI    7,0x8000
 falsetmp2:  LW      7,0,0
             ADDI    6,0,1
             SW      2,0,12
-            ADD     2,6,0
+            ADD     2,6,0// begin SHL     7,7,6 (left shift)
 slloop1:    BEQ     2,0,slend1
             ADD     7,7,7
             ADDI    2,2,-1
             BEQ     0,0,slloop1
-slend1:     LW      2,0,12
+slend1:     LW      2,0,12 // end SHL     7,7,6 (left shift)
             BEQ     0,0,loop
 endtmp2:     halt

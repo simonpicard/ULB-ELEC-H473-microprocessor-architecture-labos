@@ -8,9 +8,9 @@ import softarch.portal.data.FreeSubscription;
 import softarch.portal.data.Operator;
 import softarch.portal.data.RegularAdministrator;
 import softarch.portal.data.UserProfile;
+import softarch.portal.db.UserDatabase;
+import softarch.portal.db.DatabaseException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,12 +20,15 @@ import java.text.ParseException;
  * This class encapsulates the user database.
  * @author Niels Joncheere
  */
-public class UserDatabase extends Database {
+public class SqlUserDatabase implements UserDatabase {
+	
+	protected SqlConnection sqlConnection;
+	
 	/**
 	 * Creates a new user database.
 	 */
-	public UserDatabase(String dbUser, String dbPassword, String dbUrl) {
-		super(dbUser, dbPassword, dbUrl);
+	public SqlUserDatabase(String dbUser, String dbPassword, String dbUrl) {
+		this.sqlConnection = new SqlConnection(dbUser, dbPassword, dbUrl);
 	}
 
 	/**
@@ -34,7 +37,7 @@ public class UserDatabase extends Database {
 	public void insert(UserProfile profile)
 		throws DatabaseException {
 		
-		executeSql(profile.asSql());
+		this.sqlConnection.executeSql(profile.asSql());
 	}
 
 	/**
@@ -43,7 +46,7 @@ public class UserDatabase extends Database {
 	public void update(UserProfile profile)
 		throws DatabaseException {
 		
-		executeSql(profile.asSqlUpdate());
+		this.sqlConnection.executeSql(profile.asSqlUpdate());
 	}
 
 	/**
@@ -55,7 +58,7 @@ public class UserDatabase extends Database {
 		// Connect to the database:
 		try {
 			Statement statement
-				= getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				= this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs;
 			
 			rs = statement.executeQuery(
@@ -124,7 +127,7 @@ public class UserDatabase extends Database {
 		// Connect to the database:
 		try {
 
-			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs;
 			
 			rs = statement.executeQuery(

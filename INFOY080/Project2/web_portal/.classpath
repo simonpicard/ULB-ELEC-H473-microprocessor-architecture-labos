@@ -13,6 +13,6 @@
 			<attribute name="owner.project.facets" value="jst.java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="json-20141113.jar"/>
+	<classpathentry kind="lib" path="json-20090211.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,4 +1,4 @@
-package softarch.portal.db.sql;
+package softarch.portal.db;
 
 /**
  * @author Niels Joncheere

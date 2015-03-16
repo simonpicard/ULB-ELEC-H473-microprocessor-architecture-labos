@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Iterator;
 
 import softarch.portal.data.RawData;
-import softarch.portal.db.sql.RawDatabase;
+import softarch.portal.db.sql.SqlRawDatabase;
 
 /**
  * This is a test program for the raw database.
@@ -13,7 +13,7 @@ import softarch.portal.db.sql.RawDatabase;
 public class TestRawDatabase {
 	public static void main(String[] args) {
 		try {
-			RawDatabase rd = new RawDatabase(
+			SqlRawDatabase rd = new SqlRawDatabase(
 					"njonchee",
 					"chivas12",
 					"localhost/njonchee");

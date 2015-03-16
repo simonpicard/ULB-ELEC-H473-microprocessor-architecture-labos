@@ -15,6 +15,8 @@ import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.Report;
 import softarch.portal.data.SoftwareRepository;
+import softarch.portal.db.DatabaseException;
+import softarch.portal.db.RawDatabase;
 
 import java.sql.SQLException;
 
@@ -22,27 +24,30 @@ import java.sql.SQLException;
  * This class encapsulates the portal's raw database.
  * @author Niels Joncheere
  */
-public class RawDatabase extends Database {
+public class SqlRawDatabase implements RawDatabase {
+	
+	protected SqlConnection sqlConnection;
+	
 	/**
 	 * Creates a new raw database.
 	 */
-	public RawDatabase(String dbUser, String dbPassword, String dbUrl) {
-		super(dbUser, dbPassword, dbUrl);
+	public SqlRawDatabase(String dbUser, String dbPassword, String dbUrl) {
+		this.sqlConnection = new SqlConnection(dbUser, dbPassword, dbUrl);
 	}
 
 	/**
 	 * Returns a list of all raw data.
 	 */
-	public List getRawData()
+	public List<RawData> getRawData()
 		throws DatabaseException {
 
 		// Connect to the database:
 		try {
-			List result
-				= new Vector();
+			List<RawData> result
+				= new Vector<RawData>();
 			
 			Statement statement
-				= getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				= this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			ResultSet rs
 				= statement.executeQuery("SELECT * FROM Raw WHERE Structured <> 1;");
@@ -133,7 +138,7 @@ public class RawDatabase extends Database {
 
 		// Connect to the database:
 		try {
-			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			ResultSet rs = statement.executeQuery("SELECT MAX(ID) AS ID FROM Raw;");
 
@@ -166,7 +171,7 @@ public class RawDatabase extends Database {
 
 		// Connect to the database:
 		try {
-			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			ResultSet rs = statement.executeQuery("SELECT * FROM Raw WHERE Structured <> 1 AND ID = " + id + ";");
 			if (rs.first()) {
@@ -250,7 +255,7 @@ public class RawDatabase extends Database {
 
 		int id = getNewId();
 		RawData rawData = new RawData(id, regularData);
-		executeSql(rawData.asSql());
+		this.sqlConnection.executeSql(rawData.asSql());
 	}
 
 	/**
@@ -260,13 +265,13 @@ public class RawDatabase extends Database {
 		throws DatabaseException {
 
 		int id = rd.getId();
-		executeSql("DELETE FROM Raw WHERE ID = " + id + ";");
-		executeSql("DELETE FROM RawBook WHERE ID = " + id + ";");
-		executeSql("DELETE FROM RawArticle WHERE ID = " + id + ";");
-		executeSql("DELETE FROM RawReport WHERE ID = " + id + ";");
-		executeSql("DELETE FROM RawConference WHERE ID = " + id + ";");
-		executeSql("DELETE FROM RawSoftwareRepository WHERE ID = " + id + ";");
-		executeSql("DELETE FROM RawInterestingWebsite WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM Raw WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM RawBook WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM RawArticle WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM RawReport WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM RawConference WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM RawSoftwareRepository WHERE ID = " + id + ";");
+		this.sqlConnection.executeSql("DELETE FROM RawInterestingWebsite WHERE ID = " + id + ";");
 	}
 
 	/**
@@ -276,7 +281,7 @@ public class RawDatabase extends Database {
 		throws DatabaseException {
 
 		deleteRawData(rd);
-		executeSql(rd.asSql());
+		this.sqlConnection.executeSql(rd.asSql());
 	}
 
 	/**
@@ -288,7 +293,7 @@ public class RawDatabase extends Database {
 		// Connect to the database:
 		try {
 			Statement statement
-				= getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				= this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs
 				= statement.executeQuery(
 					"SELECT COUNT(*) \"Count\" FROM Raw;");

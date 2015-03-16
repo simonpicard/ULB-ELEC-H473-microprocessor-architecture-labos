@@ -1,4 +1,4 @@
-package softarch.portal.db.sql;
+package softarch.portal.db;
 
 import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
@@ -20,13 +20,13 @@ public class DatabaseFacade {
 	 * Creates a new database facade.
 	 */
 	public DatabaseFacade(String dbUser, String dbPassword, String dbUrl) {
-		userDb		= new UserDatabase(	dbUser,
+		userDb		= new SqlUserDatabase(	dbUser,
 							dbPassword,
 							dbUrl);
-		regularDb	= new RegularDatabase(	dbUser,
+		regularDb	= new SqlRegularDatabase(	dbUser,
 							dbPassword,
 							dbUrl);
-		rawDb		= new RawDatabase(	dbUser,
+		rawDb		= new SqlRawDatabase(	dbUser,
 							dbPassword,
 							dbUrl);
 	}

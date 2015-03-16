@@ -3,8 +3,6 @@ package softarch.portal.db.sql;
 import java.util.List;
 import java.util.Date;
 import java.util.Vector;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.text.DateFormat;
@@ -17,6 +15,8 @@ import softarch.portal.data.InterestingWebsite;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.Report;
 import softarch.portal.data.SoftwareRepository;
+import softarch.portal.db.DatabaseException;
+import softarch.portal.db.RegularDatabase;
 
 import java.text.ParseException;
 import java.sql.SQLException;
@@ -25,28 +25,31 @@ import java.sql.SQLException;
  * This class encapsulates the regular database.
  * @author Niels Joncheere
  */
-public class RegularDatabase extends Database {
+public class SqlRegularDatabase implements RegularDatabase {
+	
+	protected SqlConnection sqlConnection;
+	
 	/**
 	 * Creates a new regular database.
 	 */
-	public RegularDatabase(String dbUser, String dbPassword, String dbUrl) {
-		super(dbUser, dbPassword, dbUrl);
+	public SqlRegularDatabase(String dbUser, String dbPassword, String dbUrl) {
+		this.sqlConnection = new SqlConnection(dbUser, dbPassword, dbUrl);
 	}
 
 	/**
 	 * Returns a list containing all records of the given information type
 	 * that match the given query string.
 	 */
-	public List findRecords(String informationType, String queryString)
+	public List<RegularData> findRecords(String informationType, String queryString)
 		throws DatabaseException {
 
 		queryString = "%" + queryString + "%";
 		
 		// Connect to the database:
 		try {
-			List result = new Vector();
+			List<RegularData> result = new Vector<RegularData>();
 
-			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs;
 
 			switch (informationType.charAt(0)) {
@@ -106,14 +109,14 @@ public class RegularDatabase extends Database {
 	 * Returns a list containing all records of the given information type
 	 * that were added after the given date.
 	 */
-	public List findRecordsFrom(String informationType, Date date)
+	public List<RegularData> findRecordsFrom(String informationType, Date date)
 		throws DatabaseException {
 
 		// Connect to the database:
 		try {
-			List result = new Vector();
+			List<RegularData> result = new Vector<RegularData>();
 
-			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs;
 
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -182,7 +185,7 @@ public class RegularDatabase extends Database {
 	public void add(RegularData rd)
 		throws DatabaseException {
 		
-		executeSql(rd.asSql());
+		this.sqlConnection.executeSql(rd.asSql());
 	}
 
 	/**
@@ -194,7 +197,7 @@ public class RegularDatabase extends Database {
 
 		// Connect to the database:
 		try {
-			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = this.sqlConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs = statement.executeQuery(
 				"SELECT COUNT(*) \"Count\" FROM " +
 				informationType + ";");

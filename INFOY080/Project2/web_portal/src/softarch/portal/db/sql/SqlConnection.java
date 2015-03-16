@@ -9,20 +9,23 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Iterator;
 
+import softarch.portal.db.DatabaseException;
+
 /**
  * This abstract class implements the behaviour that is to be shared
  * by all databases.
  * @author Niels Joncheere
  */
-public class Database {
-	protected String dbUser;
-	protected String dbPassword;
-	protected String dbUrl;
+public class SqlConnection {
+	
+	private String dbUser;
+	private String dbPassword;
+	private String dbUrl;
 
 	/**
 	 * Creates a new database.
 	 */
-	public Database(String dbUser, String dbPassword, String dbUrl) {
+	public SqlConnection(String dbUser, String dbPassword, String dbUrl) {
 		this.dbUser	= dbUser;
 		this.dbPassword	= dbPassword;
 		this.dbUrl	= dbUrl;

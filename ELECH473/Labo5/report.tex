@@ -11,9 +11,27 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
+\begin{itemize}
+\item Modified Harvard architecture
+\item C compiler optimized instruction set
+\item 16-bit wide data path
+\item 24-bit wide instructions
+\item Linear program memory addressing up to 4M
+instruction words
+\item Linear data memory addressing up to 64 Kbytes
+\item 83 base instructions: mostly 1 word/1 cycle
+\item Sixteen 16-bit General Purpose Registers
+\item Two 40-bit accumulators: With rounding and saturation options
+\item Flexible and powerful addressing modes: Indirect, Modulo and Bit-Reversed
+\item Software stack
+\item 16 x 16 fractional/integer multiply operations
+\item 32/16 and 16/16 divide operations
+\item Single-cycle multiply and accumulate: Accumulator write back for DSP operations and Dual data fetch
+\item Up to +-16-bit shifts for up to 40-bit data
+\end{itemize}
 
 \section*{Question 2}
-
+A microprocessor contains only a CPU while the microcontronller contains a CPU, some RAMn some ROM and other peripherals all embedded on a single chip.
 \section*{Question 3}
 The addressing modes for data are : file register, register direct, register indirect and immediate.
 
@@ -28,7 +46,8 @@ MOV [W0],[W13] (move data stored at address in W0 to address in W13)
 ADD.B $\#$0x10,W0 (add 0x10 to W0)
 
 \section*{Question 5}
-The size of an instruction is 24 bits. %TODO: 2eme sous question
+The size of an instruction is 24 bits.\\
+Yes.
 
 \section*{Question 6}
 
@@ -71,4 +90,53 @@ The variables are stored in the stack.
 The variables are all initialized by moving an immediate value in one or several registers and then the value of  this (or these) register(s) is stored in the memory. The types contained in 8 bits use two mov.b instructions in order to initialize a variable, those which are contained in 16 bits use two mov.w instructions, those which are contained in 32 bits use four mov.w instructions and those which are contained in 64 bits use eight mov.w instructions.
 
 \section*{Question 15}
+\begin{verbatim}
+INT8U a = 180; // 45 cycle
+INT8S b = -105; // 47 cycle
+
+INT16U c = 0x3210; // 49 cycle
+INT16S d = -30000; // 51 cycle
+
+INT32U e = 129856; // 55 cycle
+INT32S f = -128423; // 59 cycle
+
+INT64U g = 0xFEDCBA9876543210; // 67 cycle
+INT64S h = -0x123456789ABCDF0; // 75 cycle
+
+FP32 i = 1.27E+33; // 79 cycle
+FP64 j = 8.76543E-18; // 87 cycle
+
+glob1=132; // 88 cycle
+\end{verbatim}
+
+\section*{Question 16}
+All the variable but glob1 are load at the first step of the debugger, variable g and h have the same hexadecimal value while not the same decimal value.\\
+glob1 is set once the debugger execute its line.
+
+\section*{Question 17}
+The value are temporarily stored in registers from WREG4 to WREG7, for INT16U it use one register, 2 for INT32U and 4 for INT64U. The higher the number of the register the higher the importance in the number, i.e, WREG7 is the MSB in a INT64U, so to read a INT64U in reegister you have to concat WREG7, WREG6, WREG5, WREG4.
+In the register you can't detect signed number directly.
+
+\section*{Question 18}
+The warnings are about unused variable and non explicit casts, nothing to be worried about.
+
+\section*{Question 19}
+Defined line 4\\
+Initialised line 23
+
+\section*{Question 20}
+? TODO
+
+\section*{Question 21}
+First problem : too big integer gor unsigned integer, therefore truncated.\\
+Too big integer for signed integer.\\
+Too big double assigned to infinity.\\
+Too small double assigned to 0.\\
+The negative value are stored using the ones' complement.
+
+\section*{Question 22}
+? TODO
+
+\section*{Question 23}
+Firstly, the value of the variable are load in the register, if size of the variable is smaller than the size of the value then the variable will be assigned with the LSB of the value.\\
 \end{document}

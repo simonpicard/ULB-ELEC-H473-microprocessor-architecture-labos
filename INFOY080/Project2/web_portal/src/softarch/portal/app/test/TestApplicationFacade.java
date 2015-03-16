@@ -22,7 +22,8 @@ public class TestApplicationFacade {
 			ApplicationFacade appFacade = new ApplicationFacade(
 				"njonchee",
 				"chivas12",
-				"localhost/njonchee");
+				"localhost/njonchee",
+				"SQL");
 			appFacade.add(fs);
 		}
 		catch (Exception e) {

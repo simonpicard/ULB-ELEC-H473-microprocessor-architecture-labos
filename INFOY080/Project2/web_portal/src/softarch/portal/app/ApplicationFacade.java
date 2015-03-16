@@ -3,8 +3,9 @@ package softarch.portal.app;
 import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.UserProfile;
-import softarch.portal.db.sql.DatabaseFacade;
+import softarch.portal.db.DatabaseFacade;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Date;
 
@@ -21,13 +22,20 @@ public class ApplicationFacade {
 
 	/**
 	 * Creates a new application facade.
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws SecurityException 
+	 * @throws NoSuchMethodException 
 	 */
-	public ApplicationFacade(	String dbUser,
+	public ApplicationFacade(String dbUser,
 					String dbPassword,
-					String dbUrl) {
+					String dbUrl,
+					String dbType) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		DatabaseFacade dbFacade
-			= new DatabaseFacade(dbUser, dbPassword, dbUrl);
+			= new DatabaseFacade(dbUser, dbPassword, dbUrl, dbType);
 		
 		userManager		= new UserManager(dbFacade);
 		queryManager		= new QueryManager(dbFacade);

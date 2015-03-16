@@ -4,6 +4,7 @@ import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.UserProfile;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Date;
 
@@ -18,17 +19,18 @@ public class DatabaseFacade {
 
 	/**
 	 * Creates a new database facade.
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws SecurityException 
+	 * @throws NoSuchMethodException 
 	 */
-	public DatabaseFacade(String dbUser, String dbPassword, String dbUrl) {
-		userDb		= new SqlUserDatabase(	dbUser,
-							dbPassword,
-							dbUrl);
-		regularDb	= new SqlRegularDatabase(	dbUser,
-							dbPassword,
-							dbUrl);
-		rawDb		= new SqlRawDatabase(	dbUser,
-							dbPassword,
-							dbUrl);
+	public DatabaseFacade(String dbUser, String dbPassword, String dbUrl, String dbType) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		DatabaseFactory databaseFactory = DatabaseFactory.getFactory(dbUser, dbPassword, dbUrl, dbType);
+		userDb = databaseFactory.createUserDatabase();
+		regularDb = databaseFactory.createRegularDatabase();
+		rawDb = databaseFactory.createRawDatabase();
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class DatabaseFacade {
 	 * Returns a list containing all records of the given information type
 	 * that match the given query string.
 	 */
-	public List findRecords(String informationType, String queryString)
+	public List<?> findRecords(String informationType, String queryString)
 		throws DatabaseException {
 
 		return regularDb.findRecords(informationType, queryString);
@@ -81,7 +83,7 @@ public class DatabaseFacade {
 	 * Returns a list containing all records of the given information type
 	 * that were added after the given date.
 	 */
-	public List findRecordsFrom(String informationType, Date date)
+	public List<?> findRecordsFrom(String informationType, Date date)
 		throws DatabaseException {
 
 		return regularDb.findRecordsFrom(informationType, date);
@@ -109,7 +111,7 @@ public class DatabaseFacade {
 	/**
 	 * Returns a list of all raw data.
 	 */
-	public List getRawData()
+	public List<?> getRawData()
 		throws DatabaseException {
 
 		return rawDb.getRawData();

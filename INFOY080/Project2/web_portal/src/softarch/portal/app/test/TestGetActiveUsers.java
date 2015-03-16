@@ -17,7 +17,8 @@ public class TestGetActiveUsers {
 			ApplicationFacade appFacade = new ApplicationFacade(
 				"njonchee",
 				"chivas12",
-				"localhost/njonchee");
+				"localhost/njonchee",
+				"SQL");
 			System.out.println(appFacade.login("God", "7475"));
 			System.out.println(appFacade.login("Nilipili", "7475"));
 			System.out.println(appFacade.login("Niels82", "7475"));

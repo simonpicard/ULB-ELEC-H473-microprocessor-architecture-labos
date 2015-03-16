@@ -1,20 +1,28 @@
 package softarch.portal.ui;
 
 import javax.servlet.http.HttpServlet;
+
 import java.util.Map;
 import java.util.Hashtable;
 import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.xml.transform.stream.StreamSource;
+
 import java.io.StringReader;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.Transformer;
+
 import java.io.FileInputStream;
 
 import softarch.portal.app.ApplicationFacade;
@@ -130,7 +138,8 @@ public class InternetFrontEnd extends HttpServlet {
 				= new ApplicationFacade(
 					properties.getProperty("dbUser"),
 					properties.getProperty("dbPassword"),
-					properties.getProperty("dbUrl"));
+					properties.getProperty("dbUrl"),
+					properties.getProperty("dbType"));
 			pages.put(	"Registration",
 					new RegistrationPage(appFacade));
 			pages.put(	"Login",
@@ -148,6 +157,24 @@ public class InternetFrontEnd extends HttpServlet {
 			// This exception will be thrown when the servlet
 			// cannot access the configuration file.  The behaviour
 			// of the servlet is undefined in this case.
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

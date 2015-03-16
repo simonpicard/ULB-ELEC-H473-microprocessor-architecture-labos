@@ -1,11 +1,11 @@
-package softarch.portal.db.test;
+package softarch.portal.db.sql.test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import softarch.portal.data.SoftwareRepository;
-import softarch.portal.db.RegularDatabase;
+import softarch.portal.db.sql.RegularDatabase;
 
 import java.net.URL;
 import java.util.List;

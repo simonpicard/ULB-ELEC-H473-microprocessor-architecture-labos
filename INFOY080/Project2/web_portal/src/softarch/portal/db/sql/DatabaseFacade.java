@@ -1,4 +1,4 @@
-package softarch.portal.db;
+package softarch.portal.db.sql;
 
 import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;

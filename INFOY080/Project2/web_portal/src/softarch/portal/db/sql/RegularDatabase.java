@@ -1,4 +1,4 @@
-package softarch.portal.db;
+package softarch.portal.db.sql;
 
 import java.util.List;
 import java.util.Date;

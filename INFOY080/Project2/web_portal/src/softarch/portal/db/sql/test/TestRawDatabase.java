@@ -1,10 +1,10 @@
-package softarch.portal.db.test;
+package softarch.portal.db.sql.test;
 
 import java.util.List;
 import java.util.Iterator;
 
 import softarch.portal.data.RawData;
-import softarch.portal.db.RawDatabase;
+import softarch.portal.db.sql.RawDatabase;
 
 /**
  * This is a test program for the raw database.

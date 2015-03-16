@@ -3,8 +3,8 @@ package softarch.portal.app;
 import java.util.Map;
 
 import softarch.portal.data.UserProfile;
-import softarch.portal.db.DatabaseException;
-import softarch.portal.db.DatabaseFacade;
+import softarch.portal.db.sql.DatabaseException;
+import softarch.portal.db.sql.DatabaseFacade;
 
 import java.util.Hashtable;
 import java.util.List;

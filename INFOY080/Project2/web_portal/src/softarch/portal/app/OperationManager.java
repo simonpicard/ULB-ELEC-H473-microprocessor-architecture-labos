@@ -1,7 +1,7 @@
 package softarch.portal.app;
 
-import softarch.portal.db.DatabaseException;
-import softarch.portal.db.DatabaseFacade;
+import softarch.portal.db.sql.DatabaseException;
+import softarch.portal.db.sql.DatabaseFacade;
 
 /**
  * This class is responsible for handling requests for diagnostic information,

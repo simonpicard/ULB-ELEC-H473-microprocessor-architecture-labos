@@ -6,7 +6,7 @@
 		<servlet-class>softarch.portal.ui.InternetFrontEnd</servlet-class>
 		<init-param>
 			<param-name>config_file</param-name>
-			<param-value>/home/arnaud/workspace/web_portal/web_portal.cfg</param-value>
+			<param-value>/home/arnaud/Documents/ulb/ma1-2014-2015/MA1weekly/INFOY080/Project2/web_portal/web_portal.cfg</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

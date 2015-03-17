@@ -21,22 +21,30 @@ public class Test {
 				"Rosette", "arosette@soft.be", new Date());
 		FreeSubscription user2 = new FreeSubscription("test", "test", "Arnaud",
 				"Rosette", "arosette@soft.be", new Date());
-		//JSONObject json = XML.toJSONObject(user1.asXml()+user2.asXml());
+		JSONObject json = XML.toJSONObject(user1.asXml());
 
-		//FileOutputStream out = new FileOutputStream("/home/arnaud/test.json");
-		//out.write(json.toString().getBytes());
+		FileOutputStream out = new FileOutputStream("/home/arnaud/test.json");
+		out.write(json.toString().getBytes());
 		
-		//String jsSource = new Scanner(new FileInputStream("/home/arnaud/test.json")).useDelimiter("\\Z").next();
-		//JSONObject jsonRead = new JSONObject(jsSource);
-		//JSONArray obj = jsonRead.getJSONArray("FreeSubscription");
-		//System.out.println(obj.getJSONObject(0).get("username"));
+		String jsSource = new Scanner(new FileInputStream("/home/arnaud/test.json")).useDelimiter("\\Z").next();
+		JSONObject jsonRead = new JSONObject(jsSource);
 		
-		String dbUser = "SA";
-		String dbPassword = "";
-		String dbUrl = "/home/arnaud/test.json";
-		String dbType = "JSON";
-		DatabaseFacade database = new DatabaseFacade(dbUser, dbPassword, dbUrl, dbType);
-		database.insert(user1);
-		database.insert(user2);
+		try {
+			JSONArray obj = jsonRead.getJSONArray("FreeSubscription");
+			System.out.println(obj.getJSONObject(0).get("username"));
+		}
+		catch (JSONException e) {
+			JSONObject obj = jsonRead.getJSONObject("FreeSubscription");
+			System.out.println(obj.get("username"));	
+		}
+		
+		
+		//String dbUser = "SA";
+		//String dbPassword = "";
+		//String dbUrl = "/home/arnaud/test.json";
+		//String dbType = "JSON";
+		//DatabaseFacade database = new DatabaseFacade(dbUser, dbPassword, dbUrl, dbType);
+		//database.insert(user1);
+		//database.insert(user2);
 	}
 }

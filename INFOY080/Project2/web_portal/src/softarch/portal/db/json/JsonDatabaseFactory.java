@@ -15,8 +15,7 @@ public class JsonDatabaseFactory extends DatabaseFactory {
 
 	@Override
 	public UserDatabase createUserDatabase() {
-		// TODO Auto-generated method stub
-		return null;
+		return new JsonUserDatabase(dbUrl);
 	}
 
 	@Override

@@ -65,8 +65,7 @@ public class CheapSubscription extends RegularUser {
 	public String asXml() {
 		return	"<CheapSubscription>" +
 			"<username>" + normalizeXml(username) + "</username>" +
-			// password is not returned,
-			// as it should only be used internally
+			"<password>" + normalizeXml(password) + "</password>" +
 			"<firstName>" +
 			normalizeXml(firstName) +
 			"</firstName>" +

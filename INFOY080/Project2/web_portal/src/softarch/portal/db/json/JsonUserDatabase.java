@@ -44,7 +44,6 @@ public class JsonUserDatabase implements UserDatabase {
 
 	public void update(UserProfile profile) throws DatabaseException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public UserProfile findUser(String username) throws DatabaseException {
@@ -69,61 +68,65 @@ public class JsonUserDatabase implements UserDatabase {
 			JSONObject jsonEntry = null;
 			Boolean found = false;
 			
-			try {
-				JSONArray jsonTable = jsonDatabase.getJSONArray("FreeSubscription");
-				for (int i=0; i<jsonTable.length() && !found; ++i) {
+			for (int i=0; i<USER_TYPES.length && !found; ++i) {
+				String tableName = USER_TYPES[i];
+				
+				try {
+					JSONArray jsonTable = jsonDatabase.getJSONArray(tableName);
+					for (int j=0; j<jsonTable.length() && !found; ++j) {
+						try {
+							jsonEntry = jsonTable.getJSONObject(j);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						
+						String usernameFromDatabase = "";
+						try {
+							usernameFromDatabase = jsonEntry.getString("username");
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						if (username.equals(usernameFromDatabase)) {
+							found = true;
+							
+						}
+					}
+				}
+				// This case is entered iff the table only contains one entry 
+				catch (JSONException e) {
 					try {
-						jsonEntry = jsonTable.getJSONObject(i);
+						jsonEntry = jsonDatabase.getJSONObject(tableName);
+						if (username.equals(jsonEntry.getString("username"))) {
+							found = true;
+						}
+					} catch (JSONException e1) {
+						// Do nothing
+					}
+				}
+				
+				if (found) {
+					String usernameFromDatabase = "";
+					String password = "";
+					String firstName = "";
+					String lastName = "";
+					String emailAddress = "";
+					Date lastLogin = null;
+					try {
+						usernameFromDatabase = jsonEntry.getString("username");
+						password = jsonEntry.getString("password");
+						firstName = jsonEntry.getString("firstName");
+						lastName = jsonEntry.getString("lastName");
+						emailAddress = jsonEntry.getString("emailAddress");
+						DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+						lastLogin = df.parse(jsonEntry.getString("lastLogin"));
 					} catch (JSONException e) {
+						e.printStackTrace();
+					} catch (ParseException e) {
 						e.printStackTrace();
 					}
 					
-					String usernameFromDatabase = "";
-					try {
-						usernameFromDatabase = jsonEntry.getString("username");
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					if (username.equals(usernameFromDatabase)) {
-						found = true;
-						
-					}
+					user = new FreeSubscription(usernameFromDatabase, password, firstName, lastName, emailAddress, lastLogin);
 				}
-			}
-			// This case is entered iff the table only contains one entry 
-			catch (JSONException e) {
-				try {
-					jsonEntry = jsonDatabase.getJSONObject("FreeSubscription");
-					if (username.equals(jsonEntry.getString("username"))) {
-						found = true;
-					}
-				} catch (JSONException e1) {
-					e1.printStackTrace();
-				}
-			}
-			
-			if (found) {
-				String usernameFromDatabase = "";
-				String password = "";
-				String firstName = "";
-				String lastName = "";
-				String emailAddress = "";
-				Date lastLogin = null;
-				try {
-					usernameFromDatabase = jsonEntry.getString("username");
-					password = jsonEntry.getString("password");
-					firstName = jsonEntry.getString("firstName");
-					lastName = jsonEntry.getString("lastName");
-					emailAddress = jsonEntry.getString("emailAddress");
-					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-					lastLogin = df.parse(jsonEntry.getString("lastLogin"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				
-				user = new FreeSubscription(usernameFromDatabase, password, firstName, lastName, emailAddress, lastLogin);
 			}
 		}
 		
@@ -136,9 +139,8 @@ public class JsonUserDatabase implements UserDatabase {
 
 	public boolean userExists(String username) throws DatabaseException {
 		Boolean answer = true;
-		UserProfile user = null;
 		try {
-			user = findUser(username);
+			findUser(username);
 		}
 		catch (DatabaseException e) {
 			if (e.getMessage().equals("Invalid username!")) {

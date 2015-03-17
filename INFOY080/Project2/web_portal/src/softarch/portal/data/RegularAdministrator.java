@@ -50,8 +50,7 @@ public class RegularAdministrator extends Administrator {
 	public String asXml() {
 		return	"<RegularAdministrator>" +
 			"<username>" + normalizeXml(username) + "</username>" +
-			// password is not returned,
-			// as it should only be used internally
+			"<password>" + normalizeXml(password) + "</password>" +
 			"<firstName>" + 
 			normalizeXml(firstName) +
 			"</firstName>" +

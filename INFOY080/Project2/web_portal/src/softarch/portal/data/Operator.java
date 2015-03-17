@@ -50,8 +50,7 @@ public class Operator extends UserProfile {
 	public String asXml() {
 		return	"<Operator>" +
 			"<username>" + normalizeXml(username) + "</username>" +
-			// password is not returned,
-			// as it should only be used internally
+			"<password>" + normalizeXml(password) + "</password>" +
 			"<firstName>" +
 			normalizeXml(firstName) +
 			"</firstName>" +

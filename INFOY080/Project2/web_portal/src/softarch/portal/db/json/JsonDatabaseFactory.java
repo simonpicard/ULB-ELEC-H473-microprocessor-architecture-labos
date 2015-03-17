@@ -1,5 +1,7 @@
 package softarch.portal.db.json;
 
+import java.util.Properties;
+
 import softarch.portal.db.DatabaseFactory;
 import softarch.portal.db.RawDatabase;
 import softarch.portal.db.RegularDatabase;
@@ -9,8 +11,8 @@ public class JsonDatabaseFactory extends DatabaseFactory {
 	
 	private String dbUrl;
 	
-	public JsonDatabaseFactory(String dbUser, String dbPassword, String dbUrl) {
-		this.dbUrl = dbUrl;
+	public JsonDatabaseFactory(Properties properties) {
+		this.dbUrl = properties.getProperty("dbUrl");
 	}
 
 	@Override

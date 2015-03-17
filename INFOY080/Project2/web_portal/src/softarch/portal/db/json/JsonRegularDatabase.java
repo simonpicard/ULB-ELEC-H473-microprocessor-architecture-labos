@@ -11,25 +11,21 @@ public class JsonRegularDatabase implements RegularDatabase {
 
 	public List<RegularData> findRecords(String informationType,
 			String queryString) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new DatabaseException("Not implemented yet.");
 	}
 
 	public List<RegularData> findRecordsFrom(String informationType, Date date)
 			throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new DatabaseException("Not implemented yet.");
 	}
 
 	public void add(RegularData rd) throws DatabaseException {
-		// TODO Auto-generated method stub
-		
+		throw new DatabaseException("Not implemented yet.");
 	}
 
 	public int getNumberOfRegularRecords(String informationType)
 			throws DatabaseException {
-		// TODO Auto-generated method stub
-		return 0;
+		throw new DatabaseException("Not implemented yet.");
 	}
 
 }

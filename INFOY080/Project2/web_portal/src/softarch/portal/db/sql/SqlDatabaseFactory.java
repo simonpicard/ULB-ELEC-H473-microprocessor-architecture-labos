@@ -1,5 +1,7 @@
 package softarch.portal.db.sql;
 
+import java.util.Properties;
+
 import softarch.portal.db.DatabaseFactory;
 import softarch.portal.db.RawDatabase;
 import softarch.portal.db.RegularDatabase;
@@ -11,10 +13,10 @@ public class SqlDatabaseFactory extends DatabaseFactory {
 	private String dbPassword;
 	private String dbUrl;
 	
-	public SqlDatabaseFactory(String dbUser, String dbPassword, String dbUrl) {
-		this.dbUser = dbUser;
-		this.dbPassword = dbPassword;
-		this.dbUrl = dbUrl;
+	public SqlDatabaseFactory(Properties properties) {
+		this.dbUser = properties.getProperty("dbUser");
+		this.dbPassword = properties.getProperty("dbPassword");
+		this.dbUrl = properties.getProperty("dbUrl");
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import softarch.portal.db.DatabaseFacade;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Date;
+import java.util.Properties;
 
 /**
  * This class implements a facade for all of the application layer's
@@ -29,13 +30,9 @@ public class ApplicationFacade {
 	 * @throws SecurityException 
 	 * @throws NoSuchMethodException 
 	 */
-	public ApplicationFacade(String dbUser,
-					String dbPassword,
-					String dbUrl,
-					String dbType) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public ApplicationFacade(Properties properties) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
-		DatabaseFacade dbFacade
-			= new DatabaseFacade(dbUser, dbPassword, dbUrl, dbType);
+		DatabaseFacade dbFacade = new DatabaseFacade(properties);
 		
 		userManager		= new UserManager(dbFacade);
 		queryManager		= new QueryManager(dbFacade);

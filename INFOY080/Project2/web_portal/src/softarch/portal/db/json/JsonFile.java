@@ -1,6 +1,7 @@
 package softarch.portal.db.json;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +17,14 @@ public class JsonFile {
 	
 	public JsonFile(String fileName) {
 		this.fileName = fileName;
+		File file = new File(fileName);
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void appendXml(String xmlSourceToAppend) throws IOException, JSONException {

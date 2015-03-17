@@ -7,6 +7,7 @@ import softarch.portal.data.UserProfile;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Date;
+import java.util.Properties;
 
 /**
  * This class implements a facade for all of the database layer's functionality.
@@ -26,8 +27,8 @@ public class DatabaseFacade {
 	 * @throws SecurityException 
 	 * @throws NoSuchMethodException 
 	 */
-	public DatabaseFacade(String dbUser, String dbPassword, String dbUrl, String dbType) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		DatabaseFactory databaseFactory = DatabaseFactory.getFactory(dbUser, dbPassword, dbUrl, dbType);
+	public DatabaseFacade(Properties properties) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		DatabaseFactory databaseFactory = DatabaseFactory.getFactory(properties);
 		userDb = databaseFactory.createUserDatabase();
 		regularDb = databaseFactory.createRegularDatabase();
 		rawDb = databaseFactory.createRawDatabase();

@@ -39,8 +39,9 @@ The number of register is sixteen and these registers are 16-bit General Purpose
 %\end{itemize}
 
 \subsubsection*{Question 2}
-A microprocessor contains only a CPU while the microcontronller contains a CPU, some RAMn some ROM and other peripherals all embedded on a single chip.\\
-A microcontronller is a standalone component which is not the case for a microprocessor.
+A microprocessor contains only a CPU while the microcontroller contains a CPU, some RAM some ROM and other peripherals all embedded in a single chip.\\
+A microcontroller is a standalone component which is not the case for a microprocessor.
+
 \subsubsection*{Question 3}
 The addressing modes for data are : file register, register direct, register indirect and immediate.
 
@@ -54,9 +55,12 @@ The addressing modes for data are : file register, register direct, register ind
 
 \subsubsection*{Question 5}
 The size of an instruction is 24 bits.\\
-Yes.//il faut expliquer
+Yes, IR is connected to a 24 bits bus.
 
 \subsubsection*{Question 6}
+There is 83 instructions so the opcode should be on 7 bits.\\
+There is 16 registers so their adress held on 4 bits.\\
+Then each instructions might have a different number of parameter but the maximum is 4, if the instruction use an immediate, it is bound by the remaining bits, e.g an instruction using two registers and an immediate : the maximum value of the immediate is 2\^(24-7-4-4)
 
 \subsubsection*{Question 7}
 This header file provides a C interface for I/O to programmers. It makes real registers usable from C code.
@@ -65,7 +69,7 @@ This header file provides a C interface for I/O to programmers. It makes real re
 The volatile keyword is used in this header file because some of the variables in this file are real register. So the value of these variables could change unexpectedly (the value can be changed by an interrupt service routine). The volatile keyword tells the compiler to do not make optimizations.
 
 \subsubsection*{Question 9}
-\begin{itemize}
+\begin{itemize}[itemsep=0pt] 
  \item \textbf{char, signed char} : -128 to 127
  \item \textbf{unsigned char} : 0 to 255
  \item \textbf{short, signed short} : -32768 to 32767
@@ -100,19 +104,14 @@ The variables are all initialized by moving an immediate value in one or several
 \begin{verbatim}
 INT8U a = 180; // 45 cycle
 INT8S b = -105; // 47 cycle
-
 INT16U c = 0x3210; // 49 cycle
 INT16S d = -30000; // 51 cycle
-
 INT32U e = 129856; // 55 cycle
 INT32S f = -128423; // 59 cycle
-
 INT64U g = 0xFEDCBA9876543210; // 67 cycle
 INT64S h = -0x123456789ABCDF0; // 75 cycle
-
 FP32 i = 1.27E+33; // 79 cycle
 FP64 j = 8.76543E-18; // 87 cycle
-
 glob1=132; // 88 cycle
 \end{verbatim}
 
@@ -121,29 +120,31 @@ All the variable but glob1 are load at the first step of the debugger, variable 
 glob1 is set once the debugger execute its line.
 
 \subsubsection*{Question 17}
-The value are temporarily stored in registers from WREG4 to WREG7, for INT16U it use one register, 2 for INT32U and 4 for INT64U. The higher the number of the register the higher the importance in the number, i.e, WREG7 is the MSB in a INT64U, so to read a INT64U in reegister you have to concat WREG7, WREG6, WREG5, WREG4.
+The value are temporarily stored in registers from WREG4 to WREG7, for INT16U it use one register, 2 for INT32U and 4 for INT64U. The higher the number of the register the higher the importance in the number, i.e, WREG7 is the MSB in a INT64U, so to read a INT64U in register you have to concat WREG7, WREG6, WREG5, WREG4.
 In the register you can't detect signed number directly.
 
 \subsubsection*{Question 18}
-The warnings are about unused variable and non explicit casts, nothing to be worried about.//si, il y a un warning concernant l'assignation de la variable globale qui est important parce que 1) il y a un cast de int vers adresse et 2) assigner une adresse comme ca n'est jamais conseillé.
+The warnings are about unused variable, irrelevant for this test. There is also a warning about the assignation of glob1 because, it is a cast from an integer to an adress, it is not carefull to do so.
 
 \subsubsection*{Question 19}
-This global variable is defined line 4, out of the main function.\\
-It is initialised line 23, at the end of the main function.
+This global variable is defined line 4, out of the main function, it is set to the adress 0x10 wich is the the w8 register.\\
+The value is initialised line 23, at the end of the main function.
 
 \subsubsection*{Question 20}
-? TODO//commmenter la ligne de declaration
+Register and memory are adressed the same way, so the variable is already in a register.
 
 \subsubsection*{Question 21}
-First problem : too big integer gor unsigned integer, therefore truncated.\\
+First problem : too big integer for unsigned integer, therefore truncated.\\
 Too big integer for signed integer.\\
 Too big double assigned to infinity.\\
 Too small double assigned to 0.\\
 The negative value are stored using the ones' complement.
 
 \subsubsection*{Question 22}
-? TODO//addressage direct
+The assignation works with cast, the cast from a smaller size to a bigger is no problem, in the other way it takes the LSB. A cast from an int to a float works well but might lose some precision.
 
 \subsubsection*{Question 23}
-Firstly, the value of the variable are load in the register, if size of the variable is smaller than the size of the value then the variable will be assigned with the LSB of the value.\\
+Firstly, the value of the variable are load in the register, if the size of the variable is smaller than the size of the value then the variable will be assigned with the LSB of the value.\\
+To assigne float value, it uses some temp register to do some additional computation in order to write the correct representation.
+
 \end{document}

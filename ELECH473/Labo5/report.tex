@@ -5,9 +5,6 @@
 \usepackage[a4paper, margin=1.0in]{geometry}
 \usepackage{graphicx}
 
-\title{ELEC-H-473 : Microprocessor Architectures\\ Lab 5 : dsPIC33 1/2}
-\author{Arnaud Rosette, Simon Picard}
-
 \begin{document}
 
 \begin{center}
@@ -18,25 +15,6 @@
 It is a Modified Harvard architecture with 16-bit wide data path and 24-bit wide instructions.\\
 There are 83 base instructions (mostly 1 word/1 cycle).\\
 The number of register is sixteen and these registers are 16-bit General Purpose Registers. There are also two 40-bit accumulators. The addressing modes are immediate, direct and indirect.
-
-%\begin{itemize}
-%>\item Modified Harvard architecture
-%\item C compiler optimized instruction set
-%>\item 16-bit wide data path
-%>\item 24-bit wide instructions
-%\item Linear program memory addressing up to 4M
-%instruction words
-%\item Linear data memory addressing up to 64 Kbytes
-%>\item 83 base instructions: mostly 1 word/1 cycle
-%>\item Sixteen 16-bit General Purpose Registers
-%>\item Two 40-bit accumulators: With rounding and saturation options
-%>\item Flexible and powerful addressing modes: Indirect, Modulo and Bit-Reversed
-%\item Software stack
-%\item 16 x 16 fractional/integer multiply operations
-%\item 32/16 and 16/16 divide operations
-%\item Single-cycle multiply and accumulate: Accumulator write back for DSP operations and Dual data fetch
-%\item Up to +-16-bit shifts for up to 40-bit data
-%\end{itemize}
 
 \subsubsection*{Question 2}
 A microprocessor contains only a CPU while the microcontroller contains a CPU, some RAM some ROM and other peripherals all embedded in a single chip.\\
@@ -58,18 +36,16 @@ The size of an instruction is 24 bits.\\
 Yes, IR is connected to a 24 bits bus.
 
 \subsubsection*{Question 6}
-There is 83 instructions so the opcode should be on 7 bits.\\
-There is 16 registers so their adress held on 4 bits.\\
-Then each instructions might have a different number of parameter but the maximum is 4, if the instruction use an immediate, it is bound by the remaining bits, e.g an instruction using two registers and an immediate : the maximum value of the immediate is 2\^(24-7-4-4)
+There is 83 instructions so the opcode should be on 7 bits. There is 16 registers so their address are held on 4 bits. Then each instructions might have a different number of parameters but the maximum is 4, if the instruction use an immediate, it is bound by the remaining bits, e.g an instruction using two registers and an immediate : the maximum value of the immediate is $2^{(24-7-4-4)}$
 
 \subsubsection*{Question 7}
 This header file provides a C interface for I/O to programmers. It makes real registers usable from C code.
 
 \subsubsection*{Question 8}
-The volatile keyword is used in this header file because some of the variables in this file are real register. So the value of these variables could change unexpectedly (the value can be changed by an interrupt service routine). The volatile keyword tells the compiler to do not make optimizations.
+The volatile keyword is used in this header file because some of the variables in this file are real registers. So the value of these variables could change unexpectedly (the value can be changed by an interrupt service routine). The volatile keyword tells the compiler to do not make optimizations.
 
 \subsubsection*{Question 9}
-\begin{itemize}[itemsep=0pt] 
+\begin{itemize}
  \item \textbf{char, signed char} : -128 to 127
  \item \textbf{unsigned char} : 0 to 255
  \item \textbf{short, signed short} : -32768 to 32767
@@ -120,18 +96,18 @@ All the variable but glob1 are load at the first step of the debugger, variable 
 glob1 is set once the debugger execute its line.
 
 \subsubsection*{Question 17}
-The value are temporarily stored in registers from WREG4 to WREG7, for INT16U it use one register, 2 for INT32U and 4 for INT64U. The higher the number of the register the higher the importance in the number, i.e, WREG7 is the MSB in a INT64U, so to read a INT64U in register you have to concat WREG7, WREG6, WREG5, WREG4.
+The values are temporarily stored in registers from WREG4 to WREG7, for INT16U it uses one register, 2 for INT32U and 4 for INT64U. The higher the number of the register the higher the importance in the number, i.e, WREG7 is the MSB in a INT64U, so to read a INT64U in register you have to concat WREG7, WREG6, WREG5, WREG4.
 In the register you can't detect signed number directly.
 
 \subsubsection*{Question 18}
-The warnings are about unused variable, irrelevant for this test. There is also a warning about the assignation of glob1 because, it is a cast from an integer to an adress, it is not carefull to do so.
+The warnings are about unused variable, irrelevant for this test. There is also a warning about the assignation of glob1 because, it is a cast from an integer to an address, it is not careful to do so.
 
 \subsubsection*{Question 19}
-This global variable is defined line 4, out of the main function, it is set to the adress 0x10 wich is the the w8 register.\\
-The value is initialised line 23, at the end of the main function.
+This global variable is defined at line 4, out of the main function, it is set to the address 0x10 which is that of the w8 register.\\
+The value is initialized at line 23, at the end of the main function.
 
 \subsubsection*{Question 20}
-Register and memory are adressed the same way, so the variable is already in a register.
+By using the register keyword, we can declare a variable which will be a register. So when we manipulate this variable, we manipulate a real register. The only difference with directly manipulating the real register is that the content of the register can be interpreted. For example, the content of the register is interpreted differently if the type of the variable is signed or unsigned. The syntax of this keyword is : register <type of the variable> <name of the variable> asm (<name of the register>);
 
 \subsubsection*{Question 21}
 First problem : too big integer for unsigned integer, therefore truncated.\\
@@ -141,10 +117,10 @@ Too small double assigned to 0.\\
 The negative value are stored using the ones' complement.
 
 \subsubsection*{Question 22}
-The assignation works with cast, the cast from a smaller size to a bigger is no problem, in the other way it takes the LSB. A cast from an int to a float works well but might lose some precision.
+The assignation works with cast, the cast from a smaller size to a bigger is no problem, in the other way it takes the LSB. A cast from an int to a float works well but might loose some precision.
 
 \subsubsection*{Question 23}
 Firstly, the value of the variable are load in the register, if the size of the variable is smaller than the size of the value then the variable will be assigned with the LSB of the value.\\
-To assigne float value, it uses some temp register to do some additional computation in order to write the correct representation.
+To assign float value, it uses some temp register to do some additional computation in order to write the correct representation.
 
 \end{document}

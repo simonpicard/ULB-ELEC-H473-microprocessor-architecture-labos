@@ -12,11 +12,11 @@
 \end{center}
 
 \subsubsection*{Question 1}
-The addition uses the keyword add, the addition cn be performed on the different variable size, if the result is too big for the recepting variable, then the carry bit is set.\\
-The multiplication uses the keyword mul, it can multiply number up to 16 bits, the result MSB is write on WREG1, the LSB is on the WREG0
+The addition uses the keyword add, the addition can be performed on the differents variables sizes, if the result is too big for the variable, then the carry bit is set to 1.\\
+The multiplication uses the keyword mul, it can multiply numbers up to 16 bits, the resulting MSB is write on WREG1, the LSB is on the WREG0
 
 \subsubsection*{Question 2}
-c=a+b OK; g=a+b OK; g=e+f OK; g=e-f is a positive number but should be negative it should use signed variable; g=f+g is to big, it check the carry bit to verify if there is an overflow, and then set the variable to the maximal value; s3=s1+s2 is negative but should be positive, the numbers are too big then it is detected and set the value to its max; s3=s1+s2 it the same problem than before but too small value then it is set to its min; c=a*b too big, set to 0; g=a*b OK; g=e*f too big; h=e*f too big because variable size too smal, h=e*f OK; j=h*i wrong withtout cast, correct with.
+c=a+b OK; g=a+b OK; g=e+f OK; g=e-f is a positive number but should be negative, it should use signed variable; g=f+g is too big, it checks the carry bit to verify if there is an overflow, and then set the variable to the maximal value; s3=s1+s2 is negative but should be positive, the numbers are too big then it is detected and it sets the value to its max; s3=s1+s2 it is the same problem than before but too small value so it is set to its min; c=a*b too big, set to 0; g=a*b OK; g=e*f too big; h=e*f too big because variable size too smal, h=e*f OK; j=h*i wrong withtout cast, correct with.
 
 \subsubsection*{Question 3}
 INT8 = INT8*INT8 : wrong, 13 cycles; 
@@ -26,22 +26,35 @@ INT32 = INT16*INT16 : wrong, 7 cycles;
 INT32 = INT32*INT32 : correct, 16 cycles; 
 INT64 = INT32*INT32 : wrong, 31 cycles; 
 INT64 = INT64*INT64 : correct, 110 cycles; 
-The casts takes time, the closer the size of the variable to 16, the lower the number of cycle
+The casts take time, the closer the size of the variable to 16, the lower the number of cycle
 
 \subsubsection*{Question 4}
 d=(a*b)/c multiplication is too big so the result is wrong; 
 d=(a/c)*b the division is ok but the final result is too big; 
-
 f=a*b/c multiplication first, enough room so the result is ok; 
 f=(a*b)/c same as above; 
-f=(a/c)*b division first, the result is different because there is a loos of precision with the division, it is better to do it later; 
-f=a*(b/c) the division is smaller so there is more loos of precision therefore the reuslt different and worse; 
-
+f=(a/c)*b division first, the result is different because there is a loss of precision with the division, it is better to do it later; 
+f=a*(b/c) the division is smaller so there is more loss of precision therefore the reuslt is different and worse; 
 f=(a*b)/c and 
 d=(a/c)*b both result gives the same number but the second calcul is not safe, here the result on d is correct because a/c can hold on 8 bit.
     
 \subsubsection*{Question 5}
+The difference is the order of the operations and the size of the variable, the multiplication should be done first because in an integer division, the larger the number to divided, the higher the precision. Moreover, the multiplication never adds errors but the division does so it is better to do the operation with errors last in order the avoid the propagation of them.
 
+\subsubsection*{Question 6}
+The division is way longer, it takes 13 cycle to perfom multiplication and 32 to do the division (with INT8U).
 
+\subsubsection*{Question 7}
+classical method: result = 57, 266 cycles; 
+2nd method: result = 56, 25 cycles; 
+3rd method: result = 57, 26 cycles
 
+\subsubsection*{Question 8}
+The two operands were first multiplied by 16, then multiplied between themselves and then the result must be divided by 2\^8, it is done with the shift. The +128 is used to round the value, if the 7th lsb is set to 1, then it means that the floating part of the number is greater or equal to 1/2, then by adding 128 to the value we conserve that information. Imagine we have a=b*c, what is done here is a = ((b*16)*(c*16))/256 = b*16*c*16/256 = b*c*256/256
+
+\subsubsection*{Question 9}
+It lose all the non int information, therefore having a precision of one unity where the 3rd method has precision of half a unit.
+
+\subsubsection*{Question 10}
+The last division should be 2\^(4+6), the computation time is the same.
 \end{document}

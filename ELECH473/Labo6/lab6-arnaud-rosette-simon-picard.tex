@@ -57,4 +57,29 @@ It lose all the non int information, therefore having a precision of one unity w
 
 \subsubsection*{Question 10}
 The last division should be 2\^(4+6), the computation time is the same.
+
+\subsubsection*{Question 11}
+These variables are stored in the stack.
+
+\subsubsection*{Question 12}
+The parameters of these functions are placed in registers before calling the function. The value of the first parameter is stored in W0, the value of the second one is stored in W1, and so on.
+
+\subsubsection*{Question 13}
+The local variable "a" is stored in the stack, at the first address of the stack.
+
+\subsubsection*{Question 14}
+In Add3, the parameters are stored in the stack at addresses higher than those of the local variables.
+
+\subsubsection*{Question 15}
+The return value of Add3 and Mul2 are placed in W0.
+
+\subsubsection*{Question 16}
+This parameter is passed by reference. This means that the address (the address of the first element of the array in this case) where this parameter is stored is given to the function (the address is stored in a register, here, W2).
+
+\subsubsection*{Question 17}
+The address of the first element of the array received as parameter is stored in the stack like any other parameter. In order to access an element of an array, the address of the element is computed (using the base address of the array given by parameter and the offset given in the code) and stored in a working register. Then, the element is accessed using indirect addressing mode with the working register containing the address of this element.
+
+\subsubsection*{Question 18}
+\&a means the address where the variable a is stored. *a means the value stored at address stored in a.
+
 \end{document}

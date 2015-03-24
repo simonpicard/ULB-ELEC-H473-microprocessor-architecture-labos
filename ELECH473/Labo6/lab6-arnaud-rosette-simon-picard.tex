@@ -12,5 +12,36 @@
 \end{center}
 
 \subsubsection*{Question 1}
+The addition uses the keyword add, the addition cn be performed on the different variable size, if the result is too big for the recepting variable, then the carry bit is set.\\
+The multiplication uses the keyword mul, it can multiply number up to 16 bits, the result MSB is write on WREG1, the LSB is on the WREG0
+
+\subsubsection*{Question 2}
+c=a+b OK; g=a+b OK; g=e+f OK; g=e-f is a positive number but should be negative it should use signed variable; g=f+g is to big, it check the carry bit to verify if there is an overflow, and then set the variable to the maximal value; s3=s1+s2 is negative but should be positive, the numbers are too big then it is detected and set the value to its max; s3=s1+s2 it the same problem than before but too small value then it is set to its min; c=a*b too big, set to 0; g=a*b OK; g=e*f too big; h=e*f too big because variable size too smal, h=e*f OK; j=h*i wrong withtout cast, correct with.
+
+\subsubsection*{Question 3}
+INT8 = INT8*INT8 : wrong, 13 cycles; 
+INT16 = INT8*INT8 : correct, 11 cycles; 
+INT16 = INT16*INT16 : wrong, 5 cycles; 
+INT32 = INT16*INT16 : wrong, 7 cycles; 
+INT32 = INT32*INT32 : correct, 16 cycles; 
+INT64 = INT32*INT32 : wrong, 31 cycles; 
+INT64 = INT64*INT64 : correct, 110 cycles; 
+The casts takes time, the closer the size of the variable to 16, the lower the number of cycle
+
+\subsubsection*{Question 4}
+d=(a*b)/c multiplication is too big so the result is wrong; 
+d=(a/c)*b the division is ok but the final result is too big; 
+
+f=a*b/c multiplication first, enough room so the result is ok; 
+f=(a*b)/c same as above; 
+f=(a/c)*b division first, the result is different because there is a loos of precision with the division, it is better to do it later; 
+f=a*(b/c) the division is smaller so there is more loos of precision therefore the reuslt different and worse; 
+
+f=(a*b)/c and 
+d=(a/c)*b both result gives the same number but the second calcul is not safe, here the result on d is correct because a/c can hold on 8 bit.
+    
+\subsubsection*{Question 5}
+
+
 
 \end{document}

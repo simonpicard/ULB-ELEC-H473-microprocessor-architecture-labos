@@ -8,7 +8,7 @@
 \begin{document}
 
 \begin{center}
-\textbf{ELEC-H-473 : Microprocessor Architectures\\ Lab 5 : dsPIC33 2/2\\Arnaud Rosette, Simon Picard}
+\textbf{ELEC-H-473 : Microprocessor Architectures\\ Lab 6 : dsPIC33 2/2\\Arnaud Rosette, Simon Picard}
 \end{center}
 
 \subsubsection*{Question 1}
@@ -56,7 +56,7 @@ The two operands were first multiplied by 16, then multiplied between themselves
 It lose all the non int information, therefore having a precision of one unity where the 3rd method has precision of half a unit.
 
 \subsubsection*{Question 10}
-The last division should be 2\^(4+6), the computation time is the same.
+The last division should be $2^{(4+6)}$, the computation time is the same.
 
 \subsubsection*{Question 11}
 These variables are stored in the stack.
@@ -81,5 +81,14 @@ The address of the first element of the array received as parameter is stored in
 
 \subsubsection*{Question 18}
 \&a means the address where the variable a is stored. *a means the value stored at address stored in a.
+
+\subsubsection*{Question 19}
+Two addresses are given to the swapnum function which realizes a swap between two variables. This function exchange the values stored at addresses contained in pointers i and j. A temporary variable is needed because once we replace the first value by the second one we have to save this erased in order to replace the second value by the first one.
+
+\subsubsection*{Question 20}
+This area (program memory) is seen as a continuation of the data memory from the program point of view. This works like that because we want to use the same instructions for accessing the program memory and the data memory. The a variable is stored at address 0x829e which is a location of the program memory.
+
+\subsubsection*{Question 21}
+When we use a INTU8 index, this index has to be prefixed with zeroes before using it for indirect addressing mode. This is done to fit a 16 bits register which is not the case with a INTU16 index.
 
 \end{document}

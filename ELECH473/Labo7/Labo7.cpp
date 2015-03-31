@@ -119,11 +119,11 @@ void asmRun(char input_file[], char output_file[], unsigned char th) {
 }
 
 
-void cImageThreshold(char source_path[], char dest_path[], unsigned char th){
+void cRun(char input_file[], char output_file[], unsigned char th){
 	unsigned int size = 0;
 	unsigned char *img = NULL;
 
-	img = parseImgFile(source_path, &size);
+	img = parseImgFile(input_file, &size);
 
 	time_t start_time, end_time;
 	float dt;
@@ -144,13 +144,9 @@ void cImageThreshold(char source_path[], char dest_path[], unsigned char th){
 	int anumber = 0;
 	scanf("%d", &anumber);
 
-	writeResultInFile(dest_path, img, size);
+	writeResultInFile(output_file, img, size);
 	delete img;
 	img = NULL;
-}
-
-void cRun(char input_file[], char output_file[], unsigned char th){
-	cImageThreshold(input_file, output_file, th);
 }
 
 
@@ -160,7 +156,7 @@ int main(int argc, char* argv[])
 	char input_file[] = "C:/Users/arnaud/Documents/ma1-2014-2015/microprocessor/ELECH473/Labo7/Labo7/test.raw";
 	char output_file[] = "C:/Users/arnaud/Documents/ma1-2014-2015/microprocessor/ELECH473/Labo7/Labo7/res-c.raw";
 	
-	cRun(input_file, output_file, 200);
+	cRun(input_file, output_file, 64);
 
 	return 0;
 }

@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "stdafx.h"
 
 unsigned char *parseImgFile(char source_path[], unsigned int *size) {
 	FILE *source_file = NULL;
@@ -62,7 +61,7 @@ void writeResultInFile(char dest_path[], unsigned char *img, int size) {
 
 void asmImageThreshold(unsigned char *src, unsigned char *dest, unsigned char *th, unsigned int asize) {
 
-	unsigned char aVal = 127;
+	unsigned char aVal = 128;
 	unsigned char *anoffset = new unsigned char[16];
 	for (int i = 0; i < 16; ++i) {
 		anoffset[i] = aVal;
@@ -104,15 +103,19 @@ void asmRun(char input_file[], char output_file[], unsigned char th) {
 		threshold[i] = th;
 	}
 
+	time_t start_time, end_time;
+	float dt;
+	start_time = clock();
+
 	asmImageThreshold(src, dest, threshold, size);
 
+	end_time = clock();
+	dt = (end_time - start_time) / (float)(CLOCKS_PER_SEC);
+	printf("Computing time %f\n", dt);
+	int anumber = 0;
+	scanf("%d", &anumber);
+
 	writeResultInFile(output_file, dest, size);
-	delete threshold;
-	threshold = NULL;
-	delete dest;
-	dest = NULL;
-	delete src;
-	src = NULL;
 }
 
 
@@ -120,11 +123,11 @@ void cImageThreshold(char source_path[], char dest_path[], unsigned char th){
 	unsigned int size = 0;
 	unsigned char *img = NULL;
 
-	//time_t start_time, end_time;
-	//float dt;
-	//start_time = clock();
-
 	img = parseImgFile(source_path, &size);
+
+	time_t start_time, end_time;
+	float dt;
+	start_time = clock();
 
 	unsigned int i = 0;
 	while (i<size) {
@@ -135,9 +138,12 @@ void cImageThreshold(char source_path[], char dest_path[], unsigned char th){
 		i = i + 1;
 	}
 
-	//end_time = clock();
-	//dt = (end_time - start_time) / (float)(CLOCKS_PER_SEC);
-	//printf("Computing time %f\n", dt);
+	end_time = clock();
+	dt = (end_time - start_time) / (float)(CLOCKS_PER_SEC);
+	printf("Computing time %f\n", dt);
+	int anumber = 0;
+	scanf("%d", &anumber);
+
 	writeResultInFile(dest_path, img, size);
 	delete img;
 	img = NULL;
@@ -149,12 +155,12 @@ void cRun(char input_file[], char output_file[], unsigned char th){
 
 
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	char input_file[] = "C:/Users/arnaud/Documents/ma1-2014-2015/microprocessor/ELECH473/Labo7/Labo7/test.raw";
-	char output_file[] = "C:/Users/arnaud/Documents/ma1-2014-2015/microprocessor/ELECH473/Labo7/Labo7/res-asm.raw";
+	char output_file[] = "C:/Users/arnaud/Documents/ma1-2014-2015/microprocessor/ELECH473/Labo7/Labo7/res-c.raw";
 	
-	asmRun(input_file, output_file, 64);
+	cRun(input_file, output_file, 200);
 
 	return 0;
 }

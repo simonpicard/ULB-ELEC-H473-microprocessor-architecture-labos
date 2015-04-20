@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://library.be" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://library.be" xmlns:intf="http://library.be" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://library.be" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="searchForBooks">
+    <complexType>
+     <sequence>
+      <element name="query" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchForBooksResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchForBooksReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Book">
+    <sequence>
+     <element name="author" nillable="true" type="xsd:string"/>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+     <element name="isbn" nillable="true" type="xsd:string"/>
+     <element name="language" nillable="true" type="xsd:string"/>
+     <element name="publisher" nillable="true" type="xsd:string"/>
+     <element name="title" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="searchForBooksResponse">
+
+      <wsdl:part element="impl:searchForBooksResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchForBooksRequest">
+
+      <wsdl:part element="impl:searchForBooks" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="LibraryService">
+
+      <wsdl:operation name="searchForBooks">
+
+         <wsdl:input message="impl:searchForBooksRequest" name="searchForBooksRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchForBooksResponse" name="searchForBooksResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="LibraryServiceSoapBinding" type="impl:LibraryService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="searchForBooks">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchForBooksRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchForBooksResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="LibraryServiceService">
+
+      <wsdl:port binding="impl:LibraryServiceSoapBinding" name="LibraryService">
+
+         <wsdlsoap:address location="http://localhost:8180/NationalLibrary/services/LibraryService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

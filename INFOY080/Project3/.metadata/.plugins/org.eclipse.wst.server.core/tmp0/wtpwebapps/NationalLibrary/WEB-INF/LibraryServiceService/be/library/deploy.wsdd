@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from LibraryServiceService WSDL service -->
+
+  <service name="LibraryService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://library.be"/>
+      <parameter name="wsdlServiceElement" value="LibraryServiceService"/>
+      <parameter name="schemaQualified" value="http://library.be"/>
+      <parameter name="wsdlServicePort" value="LibraryService"/>
+      <parameter name="className" value="be.library.LibraryService"/>
+      <parameter name="wsdlPortType" value="LibraryService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://library.be" xmlns:retNS="http://library.be" xmlns:rtns="http://library.be" name="searchForBooks" qname="operNS:searchForBooks" returnQName="retNS:searchForBooksReturn" returnType="rtns:Book" soapAction="">
+        <parameter xmlns:pns="http://library.be" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:query" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="searchForBooks"/>
+
+      <typeMapping xmlns:ns="http://library.be" qname="ns:Book" type="java:be.library.Book" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

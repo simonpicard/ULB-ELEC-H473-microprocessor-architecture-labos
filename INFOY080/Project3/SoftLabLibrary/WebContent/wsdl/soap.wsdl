@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:soft.vub.ac.be/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="softlib" targetNamespace="urn:soft.vub.ac.be/">
+	
+    <wsdl:types>   
+    <xsd:schema targetNamespace="urn:soft.vub.ac.be/">
+	   <xsd:complexType name="ArrayOfBook">
+        	<xsd:sequence>
+        		<xsd:element maxOccurs="unbounded" minOccurs="0" name="book" type="tns:Book"/>
+   			</xsd:sequence>
+       </xsd:complexType>
+       <xsd:complexType name="Book">
+       	 <xsd:sequence>
+        	<xsd:element minOccurs="0" name="author" nillable="true" type="xsd:string"/>
+        	<xsd:element minOccurs="0" name="year" nillable="true" type="xsd:int"/>
+        	<xsd:element minOccurs="0" name="isbn" nillable="true" type="xsd:int"/>
+        	<xsd:element minOccurs="0" name="language" nillable="true" type="xsd:language"/>
+        	<xsd:element minOccurs="0" name="publisher" nillable="true" type="xsd:string"/>
+        	<xsd:element minOccurs="0" name="title" nillable="true" type="xsd:string"/>
+    	  </xsd:sequence>
+       </xsd:complexType>
+
+
+	<xsd:element name="getAllBooksResponse" nillable="true" type="tns:ArrayOfBook"/>
+	<xsd:element name="searchBooks">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="query" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="searchBooksResponse" nillable="true" type="tns:ArrayOfBook"/>
+	<xsd:element name="getAllBooks">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="all"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+    </xsd:schema>
+</wsdl:types>
+
+    <wsdl:message name="getAllBooksRequest">
+    	<wsdl:part element="tns:getAllBooks" name="request"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBooksResponse">
+    	<wsdl:part element="tns:getAllBooksResponse" name="response"/>
+    </wsdl:message>
+    <wsdl:message name="searchBooksRequest">
+    	<wsdl:part element="tns:searchBooks" name="request"/>
+    </wsdl:message>
+    <wsdl:message name="searchBooksResponse">
+    	<wsdl:part element="tns:searchBooksResponse" name="response"/>
+    </wsdl:message>
+    <wsdl:portType name="SoftLibraryPortType">
+    	<wsdl:operation name="getAllBooks">
+    		<wsdl:input message="tns:getAllBooksRequest"/>
+    		<wsdl:output message="tns:getAllBooksResponse"/>
+    	</wsdl:operation>
+    	<wsdl:operation name="searchBooks">
+    		<wsdl:input message="tns:searchBooksRequest"/>
+    		<wsdl:output message="tns:searchBooksResponse"/>
+    	</wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="SoftLibrarySoapBinding" type="tns:SoftLibraryPortType">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<wsdl:operation name="getAllBooks">
+    		<soap:operation soapAction="urn:soft.vub.ac.be/getAllBooks"/>
+    		<wsdl:input>
+    			<soap:body use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"/>
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="searchBooks">
+    		<soap:operation soapAction="urn:soft.vub.ac.be/searchBooks"/>
+    		<wsdl:input>
+    			<soap:body use="literal"/>
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"/>
+    		</wsdl:output>
+    	</wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="SoftLibraryService">
+    	<wsdl:port binding="tns:SoftLibrarySoapBinding" name="soap">
+    		<soap:address location="http://localhost:8080/SoftLib/services/soap"/>
+    	</wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

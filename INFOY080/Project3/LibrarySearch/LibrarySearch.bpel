@@ -1,0 +1,160 @@
+<!-- LibrarySearch BPEL Process -->
+<bpel:process name="LibrarySearch"
+         targetNamespace="urn:soft.librarysearch"
+         suppressJoinFailure="yes"
+         xmlns:tns="urn:soft.librarysearch"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         
+         xmlns:sl="urn:soft.vub.ac.be/"
+         xmlns:nl="http://library.be"
+         >
+
+    <!-- Import the client WSDL -->
+	<bpel:import location="LibrarySearchArtifacts.wsdl" namespace="urn:soft.librarysearch" 
+	        importType="http://schemas.xmlsoap.org/wsdl/" />
+	
+	<!-- Import the WSDL files for the used library services  -->
+	<bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+		location="SoftLib.wsdl" namespace="urn:soft.vub.ac.be/" />
+	<bpel:import importType="http://schemas.xmlsoap.org/wsdl/"
+		location="NationalLibrary.wsdl" namespace="http://library.be" />
+         
+    <!-- ================================================================= -->         
+    <!-- PARTNERLINKS                                                      -->
+    <!-- List of services participating in this BPEL process               -->
+    <!-- ================================================================= -->         
+    <bpel:partnerLinks>
+        <!-- The 'client' role represents the requester of this service. -->
+        <bpel:partnerLink name="client"
+                     partnerLinkType="tns:LibrarySearch"
+                     myRole="LibrarySearchProvider"
+                     />
+        
+        <!-- The used partner services. -->
+        <bpel:partnerLink initializePartnerRole="yes"
+			name="SoftLibPartnerLink" partnerLinkType="tns:SoftLibPartnerLinkType"
+			partnerRole="Provider" />
+		<bpel:partnerLink initializePartnerRole="yes"
+			name="NationalLibPartnerLink" partnerLinkType="tns:NationalLibPartnerLinkType"
+			partnerRole="Provider" />
+    </bpel:partnerLinks>
+  
+    <!-- ================================================================= -->         
+    <!-- VARIABLES                                                         -->
+    <!-- List of messages and XML documents used within this BPEL process  -->
+    <!-- ================================================================= -->         
+    <bpel:variables>
+    	<!-- Reference to the message passed as input during initiation -->
+		<bpel:variable name="request" messageType="tns:LibrarySearchRequestMessage"  />
+		
+		<!-- Reference to the message that will be returned to the requester -->
+		<bpel:variable name="response" messageType="tns:LibrarySearchResponseMessage" />
+		
+		<!-- Variables used for the interaction with other web services -->
+		<bpel:variable messageType="sl:searchBooksRequest"     name="sl_searchBooksRequest" />
+		<bpel:variable messageType="sl:searchBooksResponse"    name="sl_searchBooksResponse" />
+		<bpel:variable messageType="nl:searchForBooksRequest"  name="nl_searchForBooksRequest" />
+		<bpel:variable messageType="nl:searchForBooksResponse" name="nl_searchForBooksResponse" />
+	</bpel:variables>
+
+    <!-- ================================================================= -->         
+    <!-- ORCHESTRATION LOGIC                                               -->
+    <!-- Set of activities coordinating the flow of messages across the    -->
+    <!-- services integrated within this business process                  -->
+    <!-- ================================================================= -->         
+    <bpel:sequence name="main">
+        
+        <!-- Receive input from requester. 
+             Note: This maps to operation defined in LibrarySearch.wsdl 
+             -->
+        <bpel:receive name="receiveInput" partnerLink="client"
+                 portType="tns:LibrarySearch"
+                 operation="process" 
+                 variable="request"
+                 createInstance="yes" />
+        
+        
+        <!--
+			prepare the response variable, where all search results will be
+			copied to
+		-->
+		<bpel:assign name="PrepareResponse" validate="no">
+			<bpel:copy>
+				<bpel:from>
+					<bpel:literal>
+						<tns:LibrarySearchResponse>
+							<tns:query></tns:query>
+							<tns:books></tns:books>
+						</tns:LibrarySearchResponse>
+					</bpel:literal>
+				</bpel:from>
+				<bpel:to part="body" variable="response" />
+			</bpel:copy>
+		</bpel:assign>
+
+
+		<bpel:assign name="AssignSearchRequest" validate="no">
+			<bpel:copy>
+				<bpel:from>
+					<bpel:literal>
+						<sl:searchBooks>
+							<query>Foo</query>
+						</sl:searchBooks>
+					</bpel:literal>
+				</bpel:from>
+				<bpel:to part="parameters" variable="sl_searchBooksRequest" />
+			</bpel:copy>
+			<bpel:copy>
+				<bpel:from>string($request.body//query)</bpel:from>
+				<bpel:to>$sl_searchBooksRequest.parameters//query</bpel:to>
+			</bpel:copy>
+		</bpel:assign>
+
+		<bpel:invoke inputVariable="sl_searchBooksRequest" name="InvokeSearchBooks"
+			operation="searchBooks" outputVariable="sl_searchBooksResponse"
+			partnerLink="SoftLibPartnerLink" portType="sl:SoftLibraryPortType" />
+
+		
+		<bpel:assign name="AssignSearchRequest" validate="no">
+			<bpel:copy>
+				<bpel:from>
+					<bpel:literal>
+						<nl:searchForBooks>
+							<nl:query></nl:query>
+						</nl:searchForBooks>
+					</bpel:literal>
+				</bpel:from>
+				<bpel:to part="parameters" variable="nl_searchForBooksRequest" />
+			</bpel:copy>
+			<bpel:copy>
+				<bpel:from>string($request.body//query)</bpel:from>
+				<bpel:to>$nl_searchForBooksRequest.parameters//nl:query</bpel:to>
+			</bpel:copy>
+		</bpel:assign>
+
+		<bpel:invoke inputVariable="nl_searchForBooksRequest"
+			name="InvokeSearchForBooks" operation="searchForBooks"
+			outputVariable="nl_searchForBooksResponse" partnerLink="NationalLibPartnerLink"
+			portType="nl:NationalLibPartnerLinkType" />
+					
+				<bpel:assign name="AssignResultSoftLib" validate="yes">
+					<bpel:copy>
+						<bpel:from>
+						<!-- processing the results -->
+						bpel:doXslTransform("books.xsl", $sl_searchBooksResponse.parameters, "second", $nl_searchForBooksResponse.parameters/*)</bpel:from>
+
+						<bpel:to>$response.body//tns:books</bpel:to>
+					</bpel:copy>
+				</bpel:assign>
+        
+        <!-- Generate reply to synchronous request -->
+        <bpel:reply name="replyOutput" 
+               partnerLink="client"
+               portType="tns:LibrarySearch"
+               operation="process" 
+               variable="response"
+               />
+
+    </bpel:sequence>
+</bpel:process>
+

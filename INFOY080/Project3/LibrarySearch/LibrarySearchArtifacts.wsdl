@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<definitions name="LibrarySearch"
+	targetNamespace="urn:soft.librarysearch"
+	xmlns:tns="urn:soft.librarysearch"
+	xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soft="urn:soft.vub.ac.be/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:nat="http://library.be" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+	<import location="SoftLib.wsdl" namespace="urn:soft.vub.ac.be/" />
+	<import location="NationalLibrary.wsdl" namespace="http://library.be" />
+
+	<!--
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		TYPE DEFINITION - List of types participating in this BPEL process The
+		BPEL Designer will generate default request and response types but you
+		can define or import any XML Schema type and use them as part of the
+		message types.
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	-->
+	<types>
+		<schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+			targetNamespace="urn:soft.librarysearch" xmlns="http://www.w3.org/2001/XMLSchema">
+
+			<element name="LibrarySearchRequest">
+				<complexType>
+					<sequence>
+						<element name="query" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="LibrarySearchResponse">
+				<complexType>
+					<sequence>
+						<element name="query" type="string" />
+                        <element name="books" type="tns:BookList"/>
+					</sequence>
+				</complexType>
+			</element>
+			
+			<complexType name="BookList">
+            	<sequence>
+            		<xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip"></xsd:any>
+            		<!--  <element name="book" type="tns:Book" maxOccurs="unbounded" minOccurs="0"></element>  -->
+            	</sequence>
+            </complexType>
+            
+            <complexType name="Book">
+            	<sequence>
+                    <element name="author" type="string" maxOccurs="1" minOccurs="1"></element>
+                    <element name="isbn" type="integer" maxOccurs="1" minOccurs="1"></element>
+                    <element name="pages" type="int"></element>
+                    <element name="publicationDate" type="dateTime"></element>
+            		<element name="publisher" type="string"></element>
+            		<element name="review" type="string"></element>
+            		<element name="summary" type="string"></element>
+            		<element name="title" type="string" maxOccurs="1" minOccurs="1"></element>
+            	</sequence>
+            </complexType>
+		</schema>
+	</types>
+
+
+	<!--
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		MESSAGE TYPE DEFINITION - Definition of the message types used as part
+		of the port type defintions
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	-->
+	<message name="LibrarySearchRequestMessage">
+		<part name="body" element="tns:LibrarySearchRequest" />
+	</message>
+	<message name="LibrarySearchResponseMessage">
+		<part name="body" element="tns:LibrarySearchResponse" />
+	</message>
+
+	<!--
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		PORT TYPE DEFINITION - A port type groups a set of operations into a
+		logical service unit.
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	-->
+
+	<!-- portType implemented by the LibrarySearch BPEL process -->
+	<portType name="LibrarySearch">
+		<operation name="process">
+			<input message="tns:LibrarySearchRequestMessage" />
+			<output message="tns:LibrarySearchResponseMessage" />
+		</operation>
+	</portType>
+
+
+	<!--
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		PARTNER LINK TYPE DEFINITION
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	-->
+	<plnk:partnerLinkType name="LibrarySearch">
+		<plnk:role name="LibrarySearchProvider" portType="tns:LibrarySearch" />
+	</plnk:partnerLinkType>
+
+	<plnk:partnerLinkType name="SoftLibPartnerLinkType">
+		<plnk:role name="Provider" portType="soft:SoftLibraryPortType" />
+	</plnk:partnerLinkType>
+	<plnk:partnerLinkType name="NationalLibPartnerLinkType">
+		<plnk:role name="Provider" portType="nat:LibraryService" />
+	</plnk:partnerLinkType>
+
+
+	<binding name="LibrarySearchSOAPBinding" type="tns:LibrarySearch">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="process">
+			<soap:operation soapAction="urn:soft.librarysearch/process" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="LibrarySearchService">
+		<port name="LibrarySearchServicePort" binding="tns:LibrarySearchSOAPBinding">
+			<soap:address location="http://localhost:8080/ode/processes/LibrarySearchService" />
+		</port>
+	</service>
+</definitions>

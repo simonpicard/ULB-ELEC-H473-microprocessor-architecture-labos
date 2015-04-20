@@ -1,0 +1,49 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SoftLibraryService WSDL service -->
+
+  <service name="soap" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="urn:soft.vub.ac.be/"/>
+      <parameter name="wsdlServiceElement" value="SoftLibraryService"/>
+      <parameter name="schemaUnqualified" value="urn:soft.vub.ac.be/"/>
+      <parameter name="wsdlServicePort" value="soap"/>
+      <parameter name="className" value="be.ac.vub.soft.SoftLibrarySoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="SoftLibraryPortType"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="urn:soft.vub.ac.be/"
+        qname="ns:Book"
+        type="java:be.ac.vub.soft.Book"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="urn:soft.vub.ac.be/"
+        qname="ns:ArrayOfBook"
+        type="java:be.ac.vub.soft.Book[]"
+        innerType="cmp-ns:Book" xmlns:cmp-ns="urn:soft.vub.ac.be/"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="urn:soft.vub.ac.be/"
+        qname="ns:>searchBooks"
+        type="java:be.ac.vub.soft.SearchBooks"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

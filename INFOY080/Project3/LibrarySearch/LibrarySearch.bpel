@@ -78,6 +78,7 @@
 			prepare the response variable, where all search results will be
 			copied to
 		-->
+        <bpel:flow>
 		<bpel:assign name="PrepareResponse" validate="no">
 			<bpel:copy>
 				<bpel:from>
@@ -92,8 +93,7 @@
 			</bpel:copy>
 		</bpel:assign>
 
-
-		<bpel:assign name="AssignSearchRequest" validate="no">
+		<bpel:assign name="AssignSearchRequestSL" validate="no">
 			<bpel:copy>
 				<bpel:from>
 					<bpel:literal>
@@ -105,17 +105,13 @@
 				<bpel:to part="parameters" variable="sl_searchBooksRequest" />
 			</bpel:copy>
 			<bpel:copy>
-				<bpel:from>string($request.body//query)</bpel:from>
+				<bpel:from>string($request.body//tns:query)</bpel:from>
 				<bpel:to>$sl_searchBooksRequest.parameters//query</bpel:to>
 			</bpel:copy>
 		</bpel:assign>
 
-		<bpel:invoke inputVariable="sl_searchBooksRequest" name="InvokeSearchBooks"
-			operation="searchBooks" outputVariable="sl_searchBooksResponse"
-			partnerLink="SoftLibPartnerLink" portType="sl:SoftLibraryPortType" />
-
 		
-		<bpel:assign name="AssignSearchRequest" validate="no">
+		<bpel:assign name="AssignSearchRequestNL" validate="no">
 			<bpel:copy>
 				<bpel:from>
 					<bpel:literal>
@@ -127,15 +123,29 @@
 				<bpel:to part="parameters" variable="nl_searchForBooksRequest" />
 			</bpel:copy>
 			<bpel:copy>
-				<bpel:from>string($request.body//query)</bpel:from>
+				<bpel:from>string($request.body//tns:query)</bpel:from>
 				<bpel:to>$nl_searchForBooksRequest.parameters//nl:query</bpel:to>
 			</bpel:copy>
 		</bpel:assign>
-
+        </bpel:flow>
+        
+        <bpel:flow>
 		<bpel:invoke inputVariable="nl_searchForBooksRequest"
-			name="InvokeSearchForBooks" operation="searchForBooks"
-			outputVariable="nl_searchForBooksResponse" partnerLink="NationalLibPartnerLink"
+			name="InvokeSearchForBooks" 
+            operation="searchForBooks"
+			outputVariable="nl_searchForBooksResponse" 
+            partnerLink="NationalLibPartnerLink"
 			portType="nl:NationalLibPartnerLinkType" />
+        
+		<bpel:invoke inputVariable="sl_searchBooksRequest" 
+            name="InvokeSearchBooks"
+			operation="searchBooks" 
+            outputVariable="sl_searchBooksResponse"
+			partnerLink="SoftLibPartnerLink" 
+            portType="sl:SoftLibraryPortType" />
+        
+        </bpel:flow>
+            
 					
 				<bpel:assign name="AssignResultSoftLib" validate="yes">
 					<bpel:copy>
@@ -145,6 +155,10 @@
 
 						<bpel:to>$response.body//tns:books</bpel:to>
 					</bpel:copy>
+			<bpel:copy>
+				<bpel:from>string($request.body//tns:query)</bpel:from>
+				<bpel:to>$response.body//tns:query</bpel:to>
+			</bpel:copy>
 				</bpel:assign>
         
         <!-- Generate reply to synchronous request -->

@@ -22,7 +22,7 @@ public class LibrarySearchServiceLocator extends org.apache.axis.client.Service 
     }
 
     // Use to get a proxy class for LibrarySearchServicePort
-    private java.lang.String LibrarySearchServicePort_address = "http://localhost:8080//LibrarySearchService.LibrarySearchServicePort/";
+    private java.lang.String LibrarySearchServicePort_address = "http://localhost:8080/ode/processes/LibrarySearchService";
 
     public java.lang.String getLibrarySearchServicePortAddress() {
         return LibrarySearchServicePort_address;
@@ -39,7 +39,7 @@ public class LibrarySearchServiceLocator extends org.apache.axis.client.Service 
         LibrarySearchServicePortWSDDServiceName = name;
     }
 
-    public librarysearch.soft.LibrarySearchServicePortType getLibrarySearchServicePort() throws javax.xml.rpc.ServiceException {
+    public librarysearch.soft.LibrarySearch getLibrarySearchServicePort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(LibrarySearchServicePort_address);
@@ -50,7 +50,7 @@ public class LibrarySearchServiceLocator extends org.apache.axis.client.Service 
         return getLibrarySearchServicePort(endpoint);
     }
 
-    public librarysearch.soft.LibrarySearchServicePortType getLibrarySearchServicePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public librarysearch.soft.LibrarySearch getLibrarySearchServicePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
             librarysearch.soft.LibrarySearchSOAPBindingStub _stub = new librarysearch.soft.LibrarySearchSOAPBindingStub(portAddress, this);
             _stub.setPortName(getLibrarySearchServicePortWSDDServiceName());
@@ -72,7 +72,7 @@ public class LibrarySearchServiceLocator extends org.apache.axis.client.Service 
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (librarysearch.soft.LibrarySearchServicePortType.class.isAssignableFrom(serviceEndpointInterface)) {
+            if (librarysearch.soft.LibrarySearch.class.isAssignableFrom(serviceEndpointInterface)) {
                 librarysearch.soft.LibrarySearchSOAPBindingStub _stub = new librarysearch.soft.LibrarySearchSOAPBindingStub(new java.net.URL(LibrarySearchServicePort_address), this);
                 _stub.setPortName(getLibrarySearchServicePortWSDDServiceName());
                 return _stub;

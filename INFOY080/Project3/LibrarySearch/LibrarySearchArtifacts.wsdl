@@ -42,8 +42,8 @@
 			
 			<complexType name="BookList">
             	<sequence>
-            		<xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip"></xsd:any>
-            		<!--  <element name="book" type="tns:Book" maxOccurs="unbounded" minOccurs="0"></element>  -->
+                    <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip"></xsd:any>
+                    <!--<element name="book" type="tns:Book" maxOccurs="unbounded" minOccurs="0"></element>-->
             	</sequence>
             </complexType>
             

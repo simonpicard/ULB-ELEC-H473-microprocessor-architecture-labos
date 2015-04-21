@@ -7,7 +7,7 @@
 
 package librarysearch.soft;
 
-public class LibrarySearchSOAPBindingStub extends org.apache.axis.client.Stub implements librarysearch.soft.LibrarySearchServicePortType {
+public class LibrarySearchSOAPBindingStub extends org.apache.axis.client.Stub implements librarysearch.soft.LibrarySearch {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -25,12 +25,12 @@ public class LibrarySearchSOAPBindingStub extends org.apache.axis.client.Stub im
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("process");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("urn:soft.librarysearch", "LibrarySearchRequest"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn:soft.librarysearch", ">LibrarySearchRequest"), librarysearch.soft.LibrarySearchRequest.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("urn:soft.librarysearch", "query"), org.apache.axis.description.ParameterDesc.INOUT, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("urn:soft.librarysearch", ">LibrarySearchResponse"));
-        oper.setReturnClass(librarysearch.soft.LibrarySearchResponse.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("urn:soft.librarysearch", "LibrarySearchResponse"));
-        oper.setStyle(org.apache.axis.constants.Style.DOCUMENT);
+        oper.setReturnType(new javax.xml.namespace.QName("urn:soft.librarysearch", "BookList"));
+        oper.setReturnClass(librarysearch.soft.BookList.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("urn:soft.librarysearch", "books"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
 
@@ -84,20 +84,6 @@ public class LibrarySearchSOAPBindingStub extends org.apache.axis.client.Stub im
             qName = new javax.xml.namespace.QName("http://library.be", "Book");
             cachedSerQNames.add(qName);
             cls = be.library.Book.class;
-            cachedSerClasses.add(cls);
-            cachedSerFactories.add(beansf);
-            cachedDeserFactories.add(beandf);
-
-            qName = new javax.xml.namespace.QName("urn:soft.librarysearch", ">LibrarySearchRequest");
-            cachedSerQNames.add(qName);
-            cls = librarysearch.soft.LibrarySearchRequest.class;
-            cachedSerClasses.add(cls);
-            cachedSerFactories.add(beansf);
-            cachedDeserFactories.add(beandf);
-
-            qName = new javax.xml.namespace.QName("urn:soft.librarysearch", ">LibrarySearchResponse");
-            cachedSerQNames.add(qName);
-            cls = librarysearch.soft.LibrarySearchResponse.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -221,7 +207,7 @@ public class LibrarySearchSOAPBindingStub extends org.apache.axis.client.Stub im
         }
     }
 
-    public librarysearch.soft.LibrarySearchResponse process(librarysearch.soft.LibrarySearchRequest body) throws java.rmi.RemoteException {
+    public librarysearch.soft.BookList process(javax.xml.rpc.holders.StringHolder query) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -233,21 +219,28 @@ public class LibrarySearchSOAPBindingStub extends org.apache.axis.client.Stub im
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("", "process"));
+        _call.setOperationName(new javax.xml.namespace.QName("urn:soft.librarysearch", "LibrarySearchRequest"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {body});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {query.value});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
         }
         else {
             extractAttachments(_call);
+            java.util.Map _output;
+            _output = _call.getOutputParams();
             try {
-                return (librarysearch.soft.LibrarySearchResponse) _resp;
+                query.value = (java.lang.String) _output.get(new javax.xml.namespace.QName("urn:soft.librarysearch", "query"));
             } catch (java.lang.Exception _exception) {
-                return (librarysearch.soft.LibrarySearchResponse) org.apache.axis.utils.JavaUtils.convert(_resp, librarysearch.soft.LibrarySearchResponse.class);
+                query.value = (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_output.get(new javax.xml.namespace.QName("urn:soft.librarysearch", "query")), java.lang.String.class);
+            }
+            try {
+                return (librarysearch.soft.BookList) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (librarysearch.soft.BookList) org.apache.axis.utils.JavaUtils.convert(_resp, librarysearch.soft.BookList.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {

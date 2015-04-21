@@ -10,7 +10,7 @@ package librarysearch.soft;
 public interface LibrarySearchService extends javax.xml.rpc.Service {
     public java.lang.String getLibrarySearchServicePortAddress();
 
-    public librarysearch.soft.LibrarySearchServicePortType getLibrarySearchServicePort() throws javax.xml.rpc.ServiceException;
+    public librarysearch.soft.LibrarySearch getLibrarySearchServicePort() throws javax.xml.rpc.ServiceException;
 
-    public librarysearch.soft.LibrarySearchServicePortType getLibrarySearchServicePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+    public librarysearch.soft.LibrarySearch getLibrarySearchServicePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }

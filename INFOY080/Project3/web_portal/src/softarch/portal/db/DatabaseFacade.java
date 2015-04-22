@@ -3,6 +3,7 @@ package softarch.portal.db;
 import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.UserProfile;
+import softarch.portal.db.webservice.WSRegularDatabase;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Properties;
 public class DatabaseFacade {
 	private UserDatabase	userDb;
 	private RegularDatabase	regularDb;
+	private RegularDatabase wsRegularDb;
 	private RawDatabase	rawDb;
 
 	/**
@@ -31,6 +33,7 @@ public class DatabaseFacade {
 		DatabaseFactory databaseFactory = DatabaseFactory.getFactory(properties);
 		userDb = databaseFactory.createUserDatabase();
 		regularDb = databaseFactory.createRegularDatabase();
+		wsRegularDb = new WSRegularDatabase(properties.getProperty("wsLocation"));
 		rawDb = databaseFactory.createRawDatabase();
 	}
 
@@ -77,7 +80,9 @@ public class DatabaseFacade {
 	public List<?> findRecords(String informationType, String queryString)
 		throws DatabaseException {
 
-		return regularDb.findRecords(informationType, queryString);
+		List<RegularData> result = regularDb.findRecords(informationType, queryString);
+		result.addAll(wsRegularDb.findRecords(informationType, queryString));
+		return result;
 	}
 
 	/**

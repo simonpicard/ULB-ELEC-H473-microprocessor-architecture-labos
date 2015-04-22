@@ -1,4 +1,4 @@
-package softarch.portal.webservice;
+package softarch.portal.db.webservice;
 
 import librarysearch.soft.BookList;
 import librarysearch.soft.LibrarySearchSOAPBindingStub;
@@ -18,16 +18,23 @@ import org.apache.axis.message.MessageElement;
 
 import softarch.portal.data.Book;
 
-public class LibrarySearchWS {
+public class WSLibrarySearch {
 
-	public LibrarySearchWS() {
+	private String wsLocation;
+	
+	public WSLibrarySearch(String wsLocation) {
+		this.wsLocation = wsLocation;
 	}
 
-	public MessageElement[] getResult(String query) {
+	public List<Book> getBooks(String query) {
+		MessageElement[] me = getResult(query);
+		return parseME(me);
+	}
+	
+	private MessageElement[] getResult(String query) {
 		try {
 			LibrarySearchSOAPBindingStub service = (LibrarySearchSOAPBindingStub) new LibrarySearchServiceLocator()
-					.getLibrarySearchServicePort(new URL(
-							"http://localhost:8080/ode/processes/LibrarySearchService"));
+					.getLibrarySearchServicePort(new URL(wsLocation));
 			BookList bookList = service.process(new StringHolder(query));
 			MessageElement[] me = bookList.get_any();
 			return me;
@@ -37,7 +44,7 @@ public class LibrarySearchWS {
 		}
 	}
 
-	public List<Book> parseME(MessageElement[] me) {
+	private List<Book> parseME(MessageElement[] me) {
 		List<MessageElement> resultSL = me[0].getChildren();
 		List<Book> res = new ArrayList<Book>();
 		for (int i = 0; i < resultSL.size(); i++) {

@@ -17,7 +17,7 @@ The order of operations must be modified in order to parallelize the invocation 
 There are two sections of the main process which are executed in parallel, one where the response page and the search requests are set up and another where the calls to the library are actually done. It is clear that these calls could not be performed earlier because they need their parameter to be set which is done in the preparation of the search requests. Therefore, the "AssignSearchRequest" share data dependencies with the invocations of the web services. And, of course, the next part of the process, where the results of the library searches are written in the response and then the response is sent, is sequential.\\
 
 In the flow structure, links can be used to state some control dependencies, in our case we could link the parts where parameter for a call are set to the call itself, stating that tasks can be executed simultaneously but these two operations have to be performed in a certain order.
-\subsection{WSDL}
+\subsection{Querying web services}
 Here is an example of a result of the service.
 \begin{verbatim}
 <searchBooksResponse xmlns="urn:soft.vub.ac.be/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -41,8 +41,8 @@ Here is an example of a result of the service.
     <title>50 Shades of Grey</title>
 </searchForBooksReturn>
 \end{verbatim}
-The responses share balise author, isbn, language, publisher, title and the xmlns informations. For the date, the Soft Library return only the year while the National Library gives a full date. For the arcitecture, the Soft Library begin with a searchBooksResponse balise in which the xmlns informations are stated and then there is a nested entry for each book, in the National Library ther is no containing balise, each book contains the xmlns values.\\
+The responses share attributes such as author, isbn, language, publisher, title and the xmlns information. For the date, the Soft Library return only the year while the National Library gives a full date. For the architecture, the Soft Library begin with a searchBooksResponse tag in which the xmlns information is stated and then there is a nested entry for each book, in the National Library there is no containing tag, each book contain the xmlns values.\\
 
-Once the library returned the results, the datas are parsed using the "bpel:doXslTransform", a function which allow the process to use a xsl steelsheet to transform the datas. the mainnadvantage is that we could add other library to the protocol and use still use this way of parsing, one would just have to modify a bit the xsl file and add two parameters in the doXslTransform function. Once this transform is done, the content of the result is copied to books balise in the response form.
+Once the library returned the results, the data is parsed using the "bpel:doXslTransform". It is a function which allow the process to use a xsl steelsheet to transform the data. the main advantage is that we could add other library to the protocol and still use this way of parsing, one would just have to modify a bit the xsl file and add two parameters in the doXslTransform function. Once this transform is done, the content of the result is copied to books tag in the response form.
 
 \end{document}

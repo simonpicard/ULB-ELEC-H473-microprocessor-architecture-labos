@@ -61,7 +61,7 @@ This unexpected behavior come from the implementation of these web services (Sof
 \begin{landscape}
 \begin{figure}[h]
    \includegraphics[scale=0.4]{uml/sequence.png}
-   \caption{\label{sequence} Sequence diagram}
+   \caption{\label{sequence} Sequence diagram : book searching}
 \end{figure}
 \end{landscape}
 This diagram is a sequence diagram which, in our case, allow us to see the exchanges between the different parts of the application. The diagram shows which parts of the program are called when the user is looking for a book. We can notice that the function goes through different class due to some patterns, then arrives in the DataBaseFacade object in which two calls are performed, the first one is polling the local database (SQL in this case), the second one takes care of the web services. There is once again different class browsed until arriving in the WSLibrarySearch which querry the web service LibrarySearch using generated class. Finally, LibrarySearch invokes simultaneously the two library web services.

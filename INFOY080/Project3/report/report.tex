@@ -12,7 +12,7 @@
 \maketitle
 \section{Exercise 1 : BPEL Processes}
 \subsection{BPEL}
-To parallelize the invokation to the web services, the order of opperation must be modified, the two "AssignSearchRequest" have to be follow each other in order to be able to performe the invokations one after the other. Once this is done, BPEL provides a flow construction wich allows task to be executed simultaniously. There was a small error in the "AssigneSearchRequest", to copy the query, the orignal process used "string(\$request.body\/\/query)" but the correct form is "string(\$request.body\/\/tns:query)".\\
+The order of operations must be modified in order to parallelize the invocation of the web services. The two "AssignSearchRequest" have to be executed one  after the other to be able to perform the invocations in parallel. Once this is done, BPEL provides a flow construction which allows tasks to be executed simultaneously. There was a small error in the "AssigneSearchRequest", to copy the query, the original process used "string(\$request.body\/\/query)" but the correct form is "string(\$request.body\/\/tns:query)".\\
 
 Two sections of the process are parallelized, the one where the response page and the search requests are set up and the part where the calls to the library are actually done. It is clear that theses calls could not be perfomed earlier because they need their parameter to be set which is done in the preparation of the search requests. Therefore, the "AssignSearchRequest" are data dependencies to the invokations. And, of course, the next part of the process, where the results of the library searchs are written in the response and then the response is sent, is sequential.\\
 

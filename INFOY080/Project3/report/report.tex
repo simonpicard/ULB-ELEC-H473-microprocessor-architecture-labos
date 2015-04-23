@@ -45,6 +45,16 @@
 The responses share attributes such as author, isbn, language, publisher, title and the xmlns information. For the date, the Soft Library return only the year while the National Library gives a full date. For the architecture, the Soft Library begin with a searchBooksResponse tag in which the xmlns information is stated and then there is a nested entry for each book, in the National Library there is no containing tag, each book contain the xmlns values.\\
 
 -Once the library returned the results, the data is parsed using the "bpel:doXslTransform". It is a function which allow the process to use a xsl steelsheet to transform the data. the main advantage is that we could add other library to the protocol and still use this way of parsing, one would just have to modify a bit the xsl file and add two parameters in the doXslTransform function. Once this transform is done, the content of the result is copied to books tag in the response form.
+
+\section{Exercise 2: Integration with Legacy Software}
+\subsection{Modifications in the web portal application}
+
+\subsection{Pattern / architectural style}
+
+\subsection{LibrarySearch service unexpected behavior}
+This unexpected behavior come from the implementation of these web services (SoftLabLibrary and NationalLibrary) which are originally packed into a war file. When you take a look at the be.library.LibraryService class in the NationalLibrary project and the be.ac.vub.soft.SoftLibrarySoapBindingImpl class in the SoftLabLibrary project (which are the classes that implement the searchForBooks and searchBooks processes), you see that books are hardcoded and these two methods always return all the books which are in the library and do not take into account the query.
+
+
 \section{Exercise 3: Architecture}
 \clearpage
 \begin{landscape}

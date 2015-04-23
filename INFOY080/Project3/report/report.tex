@@ -14,11 +14,11 @@
 \subsection{BPEL}
 The order of operations must be modified in order to parallelize the invocation of the web services. The two "AssignSearchRequest" have to be executed one  after the other to be able to perform the invocations in parallel. Once this is done, BPEL provides a flow construction which allows tasks to be executed simultaneously. There was a small error in the "AssigneSearchRequest", to copy the query, the original process used "string(\$request.body\/\/query)" but the correct form is "string(\$request.body\/\/tns:query)".\\
 
-Two sections of the process are parallelized, the one where the response page and the search requests are set up and the part where the calls to the library are actually done. It is clear that theses calls could not be perfomed earlier because they need their parameter to be set which is done in the preparation of the search requests. Therefore, the "AssignSearchRequest" are data dependencies to the invokations. And, of course, the next part of the process, where the results of the library searchs are written in the response and then the response is sent, is sequential.\\
+There are two sections of the main process which are executed in parallel, one where the response page and the search requests are set up and another where the calls to the library are actually done. It is clear that these calls could not be performed earlier because they need their parameter to be set which is done in the preparation of the search requests. Therefore, the "AssignSearchRequest" share data dependencies with the invocations of the web services. And, of course, the next part of the process, where the results of the library searches are written in the response and then the response is sent, is sequential.\\
 
-In the flow structure, links can be used to state some control dependencies, in our case we could link the part where parameter for a call are set to the call itself, stating that tasks can be execute simultaniously but these two operations have to be performed in a certain order.
+In the flow structure, links can be used to state some control dependencies, in our case we could link the parts where parameter for a call are set to the call itself, stating that tasks can be executed simultaneously but these two operations have to be performed in a certain order.
 \subsection{WSDL}
-Here ane example of result of the service.
+Here is an example of a result of the service.
 \begin{verbatim}
 <searchBooksResponse xmlns="urn:soft.vub.ac.be/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">

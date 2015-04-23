@@ -14,7 +14,7 @@
 \section{Exercise 1 : BPEL Processes}
 \subsection{BPEL}
 \begin{itemize}
-\item The order of operations must be modified in order to parallelize the invocation of the web services. The two "AssignSearchRequest" have to be executed one  after the other to be able to perform the invocations in parallel. Once this is done, BPEL provides a flow construction which allows tasks to be executed simultaneously. There was a small error in the "AssigneSearchRequest", to copy the query, the original process used "string(\$request.body\/\/query)" but the correct form is "string(\$request.body\/\/tns:query)".\\
+\item The order of operations must be modified in order to parallelize the invocation of the web services. The two "AssignSearchRequest" have to be executed one  after the other to be able to perform the invocations in parallel. Once this is done, BPEL provides a flow construction which allows tasks to be executed simultaneously. There was a small error in the "AssigneSearchRequest", to copy the query, the original process used "string(\$request.body//query)" but the correct form is "string(\$request.body//tns:query)".\\
 
 \item There are two sections of the main process which are executed in parallel, one where the response page and the search requests are set up and another where the calls to the library are actually done. It is clear that these calls could not be performed earlier because they need their parameter to be set which is done in the preparation of the search requests. Therefore, the "AssignSearchRequest" share data dependencies with the invocations of the web services. And, of course, the next part of the process, where the results of the library searches are written in the response and then the response is sent, is sequential.\\
 
@@ -47,8 +47,9 @@
 \end{verbatim}
 The responses share attributes such as author, isbn, language, publisher, title and the xmlns information. For the date, the Soft Library return only the year while the National Library gives a full date. For the architecture, the Soft Library begin with a searchBooksResponse tag in which the xmlns information is stated and then there is a nested entry for each book, in the National Library there is no containing tag, each book contain the xmlns values.\\
 
-\item Once the library returned the results, the data is parsed using the "bpel:doXslTransform". It is a function which allow the process to use a xsl steelsheet to transform the data. the main advantage is that we could add other library to the protocol and still use this way of parsing, one would just have to modify a bit the xsl file and add two parameters in the doXslTransform function. Once this transform is done, the content of the result is copied to books tag in the response form.
+\item Once the library returned the results, the data is parsed using the "bpel:doXslTransform". It is a function which allow the process to use a xsl steelsheet to transform the data. the main advantage is that we could add other library to the protocol and still use this way of parsing, one would just have to modify a bit the xsl file and add two parameters in the doXslTransform function. Once this transform is done, the content of the result is copied to books tag in the response form. On the other hand, this function needs all the result and could not do some work with one of the result if the other is taking more time.
 \end{itemize}
+
 \section{Exercise 2: Integration with Legacy Software}
 \subsection{Modifications in the web portal application}
 The modifications only occur in the database layer thanks to the 3-tier architecture and the low coupling between these layers. Firstly, we created a new class which implements the web service client and interact with the LibrarySearch service in order to retrieve the books according to a query. Secondly, we added a new database layer in the webservice package. So, we added a new concrete factory (WSDatabaseFactory) in order to follow the abstract factory pattern. This new factory is only able to create databases of type RegularDatabase because we only have to implement the book search, the other methods in this factory return null. Then, we created a new class (WSRegularDatabase) which implements the RegularDatabase interface. Finally, a new RegularDatabase was added in the DataBaseFacade : WSRegularDatabase. In the method findRecords(String, String) of the DataBaseFacade class, the results of the local database and those of the webservice are combined. An new property was also added in the configuration file : wsLocation (the url of the LibrarySearch service).\\
@@ -72,7 +73,7 @@ This unexpected behavior come from the implementation of these web services (Sof
 \begin{landscape}
 \begin{figure}[h]
    \includegraphics[scale=0.4]{uml/sequence.png}
-   \caption{\label{sequence} Sequence diagram}
+   \caption{\label{sequence} Sequence diagram : book searching}
 \end{figure}
 \end{landscape}
 This diagram is a sequence diagram which, in our case, allow us to see the exchanges between the different parts of the application. The diagram shows us which parts of the program are called when the user search for a book. We can notice that the function goes through different classes due to some patterns, then arrives in the DataBaseFacade object in which two calls are performed, the first one is polling the local database (SQL in this case), the second one takes care of the web services. There is once again different classes browsed until arriving in the WSLibrarySearch which query the web service LibrarySearch using generated class. Finally, LibrarySearch invokes simultaneously the two library web services.

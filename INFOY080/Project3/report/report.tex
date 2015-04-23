@@ -49,8 +49,9 @@ The responses share attributes such as author, isbn, language, publisher, title 
 \clearpage
 \begin{landscape}
 \begin{figure}[h]
-   \includegraphics[scale=0.45]{uml/sequence.png}
+   \includegraphics[scale=0.4]{uml/sequence.png}
    \caption{\label{sequence} Sequence diagram}
 \end{figure}
 \end{landscape}
+This diagram is a sequence diagram which, in our case, allow us to see the exchange between the different part of the application. The diagram shows which part of the program are called when the user search for a book. We can notice that the function goes through different class due to some patterns, then arrive in the DataBaseFacade object in which two calls are performed, the first one is polling the local database (SQL in this case), the second one takes care of the web services. There is once again different class browsed until arrivin gin the WSLibrarySearch which querry the web service LibrarySearch using generated class. Finally, LibrarySearch invokes simultaneously the two library web services.
 \end{document}

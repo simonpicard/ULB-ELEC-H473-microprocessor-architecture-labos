@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.30)  23 APR 2015 18:16
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.30)  23 APR 2015 18:48
 entering extended mode
 **report.tex
 (C:\Users\Simon\Desktop\git\MA1weekly\INFOY080\Project3\report\report.tex
@@ -439,22 +439,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--46
 [1
 
 {C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-<uml/sequence.png, id=14, 1629.08624pt x 626.34pt>
+<uml/sequence.png, id=14, 2163.08125pt x 987.69pt>
 File: uml/sequence.png Graphic file (type png)
  <use uml/sequence.png>
-Package pdftex.def Info: uml/sequence.png used on input line 53.
-(pdftex.def)             Requested size: 733.08205pt x 281.85039pt.
+Package pdftex.def Info: uml/sequence.png used on input line 52.
+(pdftex.def)             Requested size: 865.2172pt x 395.069pt.
 
-Overfull \hbox (30.29897pt too wide) in paragraph at lines 53--54
+Overfull \hbox (162.43411pt too wide) in paragraph at lines 52--53
 [][] 
  []
 
-[3
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <C:/Users/Simon/Desktop/git/MA1weekly/INFOY080/Project3/report/uml/sequence.
+png>] [4
 
 
- <C:/Users/Simon/Desktop/git/MA1weekly/INFOY080/Project3/report/uml/sequence.pn
-g>] (C:\Users\Simon\Desktop\git\MA1weekly\INFOY080\Project3\report\report.aux) 
-) 
+
+]
+(C:\Users\Simon\Desktop\git\MA1weekly\INFOY080\Project3\report\report.aux) ) 
 Here is how much of TeX's memory you used:
  2390 strings out of 493921
  30194 string characters out of 3148885
@@ -462,17 +466,18 @@ Here is how much of TeX's memory you used:
  5665 multiletter control sequences out of 15000+200000
  11303 words of font info for 30 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,19p,642b,251s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
-ctt1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
-c\dpi600\ecrm1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\
-pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\
-2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\Loc
-al\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk>
-Output written on report.pdf (3 pages, 97514 bytes).
+ 27i,6n,19p,725b,245s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C
+:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1
+000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dp
+i600\ecrm1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
+ppen\ec\dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\l
+jfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\
+fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\Local\M
+iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk>
+Output written on report.pdf (4 pages, 116481 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
+ 245 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Persons="platform:/resource/Families2Persons/Persons.ecore">
+  <Persons:Male fullName="Homer Simpsons"/>
+  <Persons:Male fullName="Bart Simpsons"/>
+  <Persons:Male fullName="Peter Griffin"/>
+  <Persons:Male fullName="Stewie Griffin"/>
+  <Persons:Male fullName="Chris Griffin"/>
+  <Persons:Male fullName="Eric Cartman"/>
+  <Persons:Male fullName="Stephen Stotch"/>
+  <Persons:Male fullName="Butters Stotch"/>
+  <Persons:Female fullName="Marge Simpsons"/>
+  <Persons:Female fullName="Lisa Simpsons"/>
+  <Persons:Female fullName="Maggie Simpsons"/>
+  <Persons:Female fullName="Lois Griffin"/>
+  <Persons:Female fullName="Meg Griffin"/>
+  <Persons:Female fullName="Liane Cartman"/>
+  <Persons:Female fullName="Linda Stotch"/>
+  <Persons:Female fullName="Alice Testaburger"/>
+  <Persons:Female fullName="Wendy Testaburger"/>
+</xmi:XMI>

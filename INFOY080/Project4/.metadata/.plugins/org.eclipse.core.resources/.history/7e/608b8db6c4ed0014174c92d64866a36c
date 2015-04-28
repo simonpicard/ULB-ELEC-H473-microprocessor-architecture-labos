@@ -1,0 +1,49 @@
+-- @path Families=/Families2Persons/Families.ecore
+-- @path Persons=/Families2Persons/Persons.ecore
+
+module Families2ExtendedFamilies;
+create OUT: ExtendedFamilies from IN: Families;
+
+helper context Families!Member def: isFemale: Boolean =
+	if not self.familyMother.oclIsUndefined() then
+		true
+	else
+		not self.familyDaughter.oclIsUndefined()
+	endif;
+
+helper context Families!Member def: familyName: String =
+	Set{self.familyFather, self.familyMother, self.familySon, self.familyDaughter}
+		->any(f|not f.oclIsUndefined()).lastName;
+
+helper context Families!Member def: familyLink: Families!Family =
+	Set{self.familyFather, self.familyMother, self.familySon, self.familyDaughter}
+		->any(f|not f.oclIsUndefined());
+
+helper context Families!Member def: familyChildren: Families!Member =
+	Set{self.familyFather, self.familyMother}
+		->any(f|not f.oclIsUndefined()).sons
+		->any(f|not f.oclIsUndefined()).daughters;
+
+helper context Families!Member def: familyParents: Families!Member =
+	Set{self.familySon, self.familyDaughter}
+		->any(f|not f.oclIsUndefined()).mother
+		->any(f|not f.oclIsUndefined()).father;
+		
+abstract rule Member2Person {
+	from
+		s: Families!Member
+	to
+		t: ExtendedFamily!Person (
+			fullName <- s.firstName + ' ' + s.familyName,
+			family <- s.familyLink,
+			children <- s.familyChildren,
+			parents <- s.familyParents
+		)
+}
+
+rule Member2Female extends Member2Person {
+	from
+		s: Families!Member (s.isFemale)
+	to
+		t: ExtendedFamily!Female ()
+}

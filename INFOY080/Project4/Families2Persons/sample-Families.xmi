@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+xmlns:Families="platform:/resource/Families2Persons/Families.ecore">
+<Families:Family lastName="Simpsons">
+<father firstName="Homer"/>
+<daughters firstName="Lisa"/>
+<daughters firstName="Maggie"/>
+<mother firstName="Marge"/>
+<sons firstName="Bart"/>
+</Families:Family>
+<Families:Family lastName="Griffin">
+<father firstName="Peter"/>
+<sons firstName="Stewie"/>
+<sons firstName="Chris"/>
+<mother firstName="Lois"/>
+<daughters firstName="Meg"/>
+</Families:Family>
+<Families:Family lastName="Cartman">
+<sons firstName="Eric"/>
+<mother firstName="Liane"/>
+</Families:Family>
+<Families:Family lastName="Stotch">
+<father firstName="Stephen"/>
+<sons firstName="Butters"/>
+<mother firstName="Linda"/>
+</Families:Family>
+<Families:Family lastName="Testaburger">
+<mother firstName="Alice"/>
+<daughters firstName="Wendy"/>
+</Families:Family>
+</xmi:XMI>

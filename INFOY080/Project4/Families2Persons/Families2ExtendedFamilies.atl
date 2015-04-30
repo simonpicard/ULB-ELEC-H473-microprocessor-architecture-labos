@@ -1,5 +1,5 @@
 -- @path Families=/Families2Persons/Families.ecore
--- @path Persons=/Families2Persons/ExtendedFamilies.ecore
+-- @path ExtendedFamilies=/Families2Persons/ExtendedFamilies.ecore
 
 module Families2ExtendedFamilies;
 create OUT: ExtendedFamilies from IN: Families;
@@ -11,38 +11,68 @@ helper context Families!Member def: isFemale: Boolean =
 		not self.familyDaughter.oclIsUndefined()
 	endif;
 
-helper context Families!Member def: familyName: String =
-	Set{self.familyFather, self.familyMother, self.familySon, self.familyDaughter}
-		->any(f|not f.oclIsUndefined()).lastName;
-
-helper context Families!Member def: familyLink: Families!Family =
+helper context Families!Member def: family: Families!Family =
 	Set{self.familyFather, self.familyMother, self.familySon, self.familyDaughter}
 		->any(f|not f.oclIsUndefined());
 
-helper context Families!Member def: familyChildren: Families!Member =
-	let f : Families!Family = Set{self.familyFather, self.familyMother}->any(f|not f.oclIsUndefined()) in
-		f.sons->union(f.daughter);
+helper context Families!Member def: familyName: String =
+	self.family.lastName;
 
-helper context Families!Member def: familyParents: Families!Member =
-	let f : Families!Family = Set{self.familySon, self.familyDaughter}->any(f|not f.oclIsUndefined()) in
-		f.mother->union(f.father);
-		
+helper context Families!Family def: nbChildren: Integer =
+	let sons: Set(Families!Member) = self.sons
+	in sons.union(self.daughters).size();
+
+helper context Families!Member def: isChild: Boolean =
+	if not self.familySon.oclIsUndefined()
+	then
+		true
+	else
+		not self.familyDaughter.oclIsUndefined()
+	endif;
+
+unique lazy rule CreateExtendedFamily {
+	from
+		s: Families!Family
+	to
+		t: ExtendedFamilies!Family(
+			lastName <- s.lastName,
+			noOfChildren <- s.nbChildren)
+}
+
 abstract rule Member2Person {
 	from
 		s: Families!Member
+	using {
+		fam: ExtendedFamilies!Family = thisModule.CreateExtendedFamily(s.family);
+	}
 	to
-		t: ExtendedFamily!Person (
-			fullName <- s.firstName + ' ' + s.familyName,
-			family <- s.familyLink,
-			children <- s.familyChildren,
-			parents <- s.familyParents,
-			noOfChildren <- s.familyChildren->size()
+		t: ExtendedFamilies!Person (
+			firstName <- s.firstName,
+			family <- fam
+			--parents <- 
+				--if s.isChild
+				--then
+					--Sequence{fam.members->any(p|(not s.family.father.oclIsUndefined()) and (p.firstName=s.family.father.firstName)),
+						--fam.members->any(p|(not s.family.mother.oclIsUndefined()) and (p.firstName=s.family.mother.firstName))}
+				--else
+					--Sequence{}
+				--endif
 		)
+	do{
+		t.refSetValue('noOfChildren', 10);
+	}
 }
 
 rule Member2Female extends Member2Person {
 	from
 		s: Families!Member (s.isFemale)
 	to
-		t: ExtendedFamily!Female ()
+		t: ExtendedFamilies!Female ()
+}
+
+rule Member2Male extends Member2Person {
+	from
+		s: Families!Member (not s.isFemale)
+	to
+		t: ExtendedFamilies!Male ()
 }

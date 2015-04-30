@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="27" version="2.0">
+<workbench progressCount="36" version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1024" x="26" y="26">
+<window height="728" maximized="true" width="1024" x="104" y="0">
 <fastViewData fastViewLocation="1024"/>
-<intro standby="true"/>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
@@ -14,36 +13,58 @@
 <coolItem id="org.eclipse.amalgam.discovery.modeling.toolbars.sampleToolbar" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="22"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="99" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="61" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.m2m.atl.adt.editor.AtlEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.emf.ecore.presentation.EcoreEditorID" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1430232270126" focus="true" label="Workspace - Java">
+<page aggregateWorkingSetId="Aggregate for window 1430233948960" focus="true" label="Workspace - ATL">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.emf.ecore.presentation.EcoreEditorID" name="ExtendedFamilies.ecore" partName="ExtendedFamilies.ecore" path="C:/Users/arnaud/workspace/Families2Persons/ExtendedFamilies.ecore" title="ExtendedFamilies.ecore" tooltip="Families2Persons/ExtendedFamilies.ecore" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Families2Persons/ExtendedFamilies.ecore"/>
+</editor>
+<editor id="org.eclipse.emf.ecore.presentation.EcoreEditorID" name="Families.ecore" partName="Families.ecore" path="C:/Users/arnaud/workspace/Families2Persons/Families.ecore" title="Families.ecore" tooltip="Families2Persons/Families.ecore" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Families2Persons/Families.ecore"/>
+</editor>
+<editor id="org.eclipse.m2m.atl.adt.editor.AtlEditor" name="Families2Persons.atl" partName="Families2Persons.atl" path="C:/Users/arnaud/workspace/Families2Persons/Families2Persons.atl" title="Families2Persons.atl" tooltip="Families2Persons/Families2Persons.atl" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Families2Persons/Families2Persons.atl"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="154" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" name="Families2ExtendedFamilies.atl" partName="Families2ExtendedFamilies.atl" path="C:/Users/arnaud/workspace/Families2Persons/Families2ExtendedFamilies.atl" title="Families2ExtendedFamilies.atl" tooltip="Families2Persons/Families2ExtendedFamilies.atl" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Families2Persons/Families2ExtendedFamilies.atl"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1799" selectionTopPixel="700"/>
+</editor>
 </editors>
 <views>
-<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
-<view id="org.eclipse.ui.internal.introview" partName="Welcome">
-<viewState>
-<presentation currentPage="root" restore="true"/>
-<standbyPart/>
-</viewState>
+<view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
+<viewState/>
 </view>
+<view id="org.eclipse.pde.runtime.LogView" partName="Error Log">
+<viewState activate="true" allSessions="true" column2="300" column3="150" column4="150" error="true" groupBy="0" info="true" limit="50" ok="true" orderType="2" orderValue="-1" show_filter_text="true" useLimit="true" warning="true"/>
+</view>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
-<customFilters userDefinedPatternsEnabled="false">
-<xmlDefinedFilters>
-<child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
+<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.mylyn.java.ui.MembersFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*" isEnabled="true"/>
@@ -71,6 +92,9 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors (1 item)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -79,15 +103,16 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
 </view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
 <view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List">
 <viewState linkWithEditor="true" presentation="org.eclipse.mylyn.tasks.ui.categorized">
-<sorter groupBy="CATEGORY_QUERY">
-<sorter>
-<sort0 sortDirection="1" sortKey="PRIORITY"/>
+<sorter groupBy="CATEGORY_QUERY">&#x0A;<sorter>&#x0A;<sort0 sortDirection="1" sortKey="PRIORITY"/>
 <sort1 sortDirection="1" sortKey="RANK"/>
 <sort2 sortDirection="1" sortKey="DATE_CREATED"/>
 <sort3 sortDirection="1" sortKey="NONE"/>
@@ -100,8 +125,11 @@
 <filteredTreeFindHistory/>
 </viewState>
 </view>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
 </views>
-<perspectives activePart="org.eclipse.ui.internal.introview" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.m2m.atl.adt.editor.AtlEditor" activePerspective="org.eclipse.m2m.atl.adt.ui.atlPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -154,82 +182,253 @@
 <new_wizard_action id="org.eclipse.mylyn.tasks.ui.wizards.new.repository.task"/>
 <perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
 <perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
-<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
-<view id="org.eclipse.ui.internal.introview"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="left">
-<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">
-<page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="left">&#x0A;<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.ui.navigator.ProjectExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.junit.ResultView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@3e3315d9" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="left">
-<folder activePageID="org.eclipse.ui.internal.introview" appearance="2" expanded="2">
-<page content="org.eclipse.ui.internal.introview" label="Welcome"/>
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@176015d" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="left">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="250" ratioRight="750" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.74922603" ratioLeft="484" ratioRight="162" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<info folder="true" part="bottom" ratio="0.7491749" ratioLeft="454" ratioRight="152" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.PropertySheet" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@a34e9f" ratio="0.7493333" ratioLeft="562" ratioRight="188" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.mylyn.tasks.ui.views.tasks" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="right" ratio="0.5" ratioLeft="227" ratioRight="227" relationship="4" relative="org.eclipse.ui.internal.ViewStack@a34e9f">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.5990099" ratioLeft="363" ratioRight="243" relationship="4" relative="left"/>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.m2m.atl.adt.ui.perspective.AtlPerspective" id="org.eclipse.m2m.atl.adt.ui.atlPerspective" label="ATL"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.m2m.atl.adt.ui.compatibility"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<new_wizard_action id="atlProjectWizard"/>
+<new_wizard_action id="atlPluginWizard"/>
+<new_wizard_action id="atlFileWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<perspective_action id="org.eclipse.m2m.atl.adt.atlPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.pde.runtime.LogView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="left">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="left">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.19114392" ratioLeft="259" ratioRight="1096" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.7491961" ratioLeft="466" ratioRight="156" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@37b52340" ratio="0.7493333" ratioLeft="562" ratioRight="188" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.mylyn.tasks.ui.views.tasks" appearance="2" expanded="2">
-<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
-</folder>
-</info>
-<info folder="true" part="right" ratio="0.5" ratioLeft="242" ratioRight="242" relationship="4" relative="org.eclipse.ui.internal.ViewStack@37b52340">
+<info folder="true" part="right" ratio="0.8051235" ratioLeft="880" ratioRight="213" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
-<page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
-<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.5990712" ratioLeft="387" ratioRight="259" relationship="4" relative="left"/>
 </mainWindow>
 </layout>
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" path="/Families2Persons/ExtendedFamilies.ecore"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" path="/Families2Persons/Families2ExtendedFamilies.atl"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/Families2Persons/sample-Extended.xmi"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" path="/Families2Persons/Families2Persons.atl"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Families.xmi"/>
+</editors>
+<item historyLabel="sample-Extended.xmi" index="4"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="72" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="2">
+<position/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="72" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="4"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1916" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="ExtendedFamilies.ecore" index="0"/>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="ExtendedFamilies.ecore" index="0"/>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1916" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1144" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1144" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1144" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="2">
+<position/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1144" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="Families2Persons.atl" index="3">
+<position info="not_deleted" x="172" y="172"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1400" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="805" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="sample-Families.xmi" index="7"/>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="sample-Families.xmi" index="7"/>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="sample-Families.xmi" index="7"/>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="sample-Families.xmi" index="7"/>
+<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="805" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1774" y="0"/>
+</item>
+<item historyLabel="ExtendedFamilies.ecore" index="0"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1916" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1754" y="0"/>
+</item>
+<item historyLabel="Families2Persons.atl" index="3">
+<position info="not_deleted" x="154" y="0"/>
+</item>
+<item historyLabel="ExtendedFamilies.ecore" index="0"/>
+<item active="true" historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -246,5 +445,36 @@
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Families.xmi" tooltip="Families2Persons/sample-Families.xmi">
+<persistable path="/Families2Persons/sample-Families.xmi"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Extended.xmi" tooltip="Families2Persons/sample-Extended.xmi">
+<persistable path="/Families2Persons/sample-Extended.xmi"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Persons.xmi" tooltip="Families2Persons/sample-Persons.xmi">
+<persistable path="/Families2Persons/sample-Persons.xmi"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="Families2ExtendedFamilies.launch" tooltip="Families2Persons/Families2ExtendedFamilies.launch">
+<persistable path="/Families2Persons/Families2ExtendedFamilies.launch"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" name="Families2ExtendedFamilies.atl" tooltip="Families2Persons/Families2ExtendedFamilies.atl">
+<persistable path="/Families2Persons/Families2ExtendedFamilies.atl"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" name="Families2Persons.atl" tooltip="Families2Persons/Families2Persons.atl">
+<persistable path="/Families2Persons/Families2Persons.atl"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" name="Persons.ecore" tooltip="Families2Persons/Persons.ecore">
+<persistable path="/Families2Persons/Persons.ecore"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" name="Families.ecore" tooltip="Families2Persons/Families.ecore">
+<persistable path="/Families2Persons/Families.ecore"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" name="ExtendedFamilies.ecore" tooltip="Families2Persons/ExtendedFamilies.ecore">
+<persistable path="/Families2Persons/ExtendedFamilies.ecore"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="Families2Persons.asm" tooltip="Families2Persons/Families2Persons.asm">
+<persistable path="/Families2Persons/Families2Persons.asm"/>
+</file>
+</mruList>
 </workbench>

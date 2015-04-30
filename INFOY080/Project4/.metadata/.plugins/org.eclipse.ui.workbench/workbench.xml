@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="36" version="2.0">
+<workbench progressCount="37" version="2.0">
 <workbenchAdvisor/>
 <window height="728" maximized="true" width="1024" x="104" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -51,7 +51,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" name="Families2ExtendedFamilies.atl" partName="Families2ExtendedFamilies.atl" path="C:/Users/arnaud/workspace/Families2Persons/Families2ExtendedFamilies.atl" title="Families2ExtendedFamilies.atl" tooltip="Families2Persons/Families2ExtendedFamilies.atl" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Families2Persons/Families2ExtendedFamilies.atl"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1799" selectionTopPixel="700"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1912" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -289,7 +289,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.19114392" ratioLeft="259" ratioRight="1096" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.7491961" ratioLeft="466" ratioRight="156" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.views.PropertySheet" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
@@ -319,95 +319,16 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" path="/Families2Persons/ExtendedFamilies.ecore"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" path="/Families2Persons/Families2ExtendedFamilies.atl"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/Families2Persons/sample-Extended.xmi"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2m.atl.adt.editor.AtlEditor" path="/Families2Persons/Families2Persons.atl"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Families.xmi"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" path="/Families2Persons/Families.ecore"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" path="/Families2Persons/ExtendedFamilies.ecore"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" path="/Families2Persons/sample-Extended.xmi"/>
 </editors>
-<item historyLabel="sample-Extended.xmi" index="4"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="72" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="2">
-<position/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="72" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="4"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="5"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1916" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="5"/>
-<item historyLabel="ExtendedFamilies.ecore" index="0"/>
-<item historyLabel="sample-Extended.xmi" index="5"/>
-<item historyLabel="ExtendedFamilies.ecore" index="0"/>
-<item historyLabel="sample-Extended.xmi" index="5"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1916" y="0"/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1144" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="5"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1144" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="5"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1144" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="2">
-<position/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1144" y="0"/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position/>
-</item>
-<item historyLabel="Families2Persons.atl" index="3">
-<position info="not_deleted" x="172" y="172"/>
-</item>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="1400" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="Families2ExtendedFamilies.atl" index="1">
-<position info="not_deleted" x="805" y="0"/>
-</item>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="sample-Families.xmi" index="7"/>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="sample-Families.xmi" index="7"/>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="sample-Families.xmi" index="7"/>
-<item historyLabel="sample-Extended.xmi" index="6"/>
-<item historyLabel="sample-Families.xmi" index="7"/>
-<item historyLabel="sample-Extended.xmi" index="6"/>
+<item historyLabel="sample-Extended.xmi" index="3"/>
 <item historyLabel="Families2ExtendedFamilies.atl" index="1">
 <position info="not_deleted" x="805" y="0"/>
 </item>
@@ -421,12 +342,97 @@
 <item historyLabel="Families2ExtendedFamilies.atl" index="1">
 <position info="not_deleted" x="1754" y="0"/>
 </item>
-<item historyLabel="Families2Persons.atl" index="3">
+<item historyLabel="Families2Persons.atl" index="2">
 <position info="not_deleted" x="154" y="0"/>
 </item>
 <item historyLabel="ExtendedFamilies.ecore" index="0"/>
-<item active="true" historyLabel="Families2ExtendedFamilies.atl" index="1">
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
 <position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="4"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1963" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1123" y="0"/>
+</item>
+<item historyLabel="Families.ecore" index="6"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1288" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="5"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1855" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1854" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1991" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="2593" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1991" y="0"/>
+</item>
+<item historyLabel="ExtendedFamilies.ecore" index="8"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="2047" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1991" y="0"/>
+</item>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1139" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1990" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1990" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="ExtendedFamilies.ecore" index="8"/>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1990" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="7"/>
+<item historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1812" y="0"/>
+</item>
+<item historyLabel="sample-Extended.xmi" index="9"/>
+<item active="true" historyLabel="Families2ExtendedFamilies.atl" index="1">
+<position info="not_deleted" x="1812" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -446,11 +452,11 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Families.xmi" tooltip="Families2Persons/sample-Families.xmi">
-<persistable path="/Families2Persons/sample-Families.xmi"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Extended.xmi" tooltip="Families2Persons/sample-Extended.xmi">
 <persistable path="/Families2Persons/sample-Extended.xmi"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Families.xmi" tooltip="Families2Persons/sample-Families.xmi">
+<persistable path="/Families2Persons/sample-Families.xmi"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID" name="sample-Persons.xmi" tooltip="Families2Persons/sample-Persons.xmi">
 <persistable path="/Families2Persons/sample-Persons.xmi"/>

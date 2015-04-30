@@ -30,6 +30,7 @@ helper context Families!Member def: isChild: Boolean =
 		not self.familyDaughter.oclIsUndefined()
 	endif;
 
+
 unique lazy rule CreateExtendedFamily {
 	from
 		s: Families!Family
@@ -42,37 +43,53 @@ unique lazy rule CreateExtendedFamily {
 abstract rule Member2Person {
 	from
 		s: Families!Member
-	using {
-		fam: ExtendedFamilies!Family = thisModule.CreateExtendedFamily(s.family);
-	}
 	to
 		t: ExtendedFamilies!Person (
 			firstName <- s.firstName,
-			family <- fam
-			--parents <- 
-				--if s.isChild
-				--then
-					--Sequence{fam.members->any(p|(not s.family.father.oclIsUndefined()) and (p.firstName=s.family.father.firstName)),
-						--fam.members->any(p|(not s.family.mother.oclIsUndefined()) and (p.firstName=s.family.mother.firstName))}
-				--else
-					--Sequence{}
-				--endif
+			family <- thisModule.CreateExtendedFamily(s.family)
 		)
-	do{
-		t.refSetValue('noOfChildren', 10);
-	}
 }
 
-rule Member2Female extends Member2Person {
+abstract rule Member2Child extends Member2Person {
 	from
-		s: Families!Member (s.isFemale)
+		s: Families!Member (s.isChild)
+	using {
+		parents: Set(Families!Member) = Set{s.family.father, s.family.mother}->select(p|not p.oclIsUndefined());
+		extParents: Set(ExtendedFamilies!Person) = parents->collect(par|if par.isFemale then thisModule.Member2ParentFemale(par) else thisModule.Member2ParentMale(par) endif);
+	}
+	to
+		t: ExtendedFamilies!Person (
+			parents <- extParents)
+}
+
+unique lazy rule Member2ParentFemale {
+	from
+		s: Families!Member ((not s.isChild) and s.isFemale)
+	to
+		t: ExtendedFamilies!Female (
+			firstName <- s.firstName,
+			family <- thisModule.CreateExtendedFamily(s.family))
+}
+
+unique lazy rule Member2ParentMale {
+	from
+		s: Families!Member ((not s.isChild) and (not s.isFemale))
+	to
+		t: ExtendedFamilies!Male (
+			firstName <- s.firstName,
+			family <- thisModule.CreateExtendedFamily(s.family))
+}
+
+rule Member2ChildFemale extends Member2Child {
+	from
+		s: Families!Member (s.isChild and s.isFemale)
 	to
 		t: ExtendedFamilies!Female ()
 }
 
-rule Member2Male extends Member2Person {
+rule Member2ChildMale extends Member2Child {
 	from
-		s: Families!Member (not s.isFemale)
+		s: Families!Member (s.isChild and (not s.isFemale))
 	to
 		t: ExtendedFamilies!Male ()
 }

@@ -71,6 +71,8 @@ abstract rule Member2Child extends Member2Person {
 			parents <- extParents)
 }
 
+--Rule which creates a father (of the class Person). This rule does not extend the Member2Person rule because this rule needs to be unique.
+--So it has to be lazy and it can't extends a non-lazy rule.
 unique lazy rule Member2ParentFemale {
 	from
 		s: Families!Member ((not s.isChild) and s.isFemale)
@@ -80,6 +82,7 @@ unique lazy rule Member2ParentFemale {
 			family <- thisModule.Family2ExtendedFamily(s.family))
 }
 
+--Rule which creates a mother (of the class Person).
 unique lazy rule Member2ParentMale {
 	from
 		s: Families!Member ((not s.isChild) and (not s.isFemale))
@@ -89,6 +92,7 @@ unique lazy rule Member2ParentMale {
 			family <- thisModule.Family2ExtendedFamily(s.family))
 }
 
+--Concrete rule that creates a daughter.
 rule Member2ChildFemale extends Member2Child {
 	from
 		s: Families!Member (s.isChild and s.isFemale)
@@ -96,6 +100,7 @@ rule Member2ChildFemale extends Member2Child {
 		t: ExtendedFamilies!Female ()
 }
 
+--Concrete rule that creates a son.
 rule Member2ChildMale extends Member2Child {
 	from
 		s: Families!Member (s.isChild and (not s.isFemale))

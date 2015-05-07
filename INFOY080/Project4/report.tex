@@ -12,11 +12,14 @@
 \begin{document}
 \maketitle
 \section{Approach}
-Our approach for converting Families to ExtendedFamilies is to convert each child and let children creating their parents. The families are created by their members.
+Our approach for converting Families to ExtendedFamilies is to convert each child and let children creating their parents (or retrieving them). The families are created by their members (or retrieved).
 \section{Rules hierarchy}
 The rules which convert members from the previous model to persons of the new model follow a hierarchy. \\
-There is one abstract rule on the top of the hierarchy which convert a Member to a Person. It fills the firstName and family fields of a Person which are attributes that need to be filled for all type of Person. The family field is a reference to the Family of the Person. In order to obtain the correct reference, a unique lazy rule is used to create or retrieve the reference to the family because we do not want to have duplicate families.\\
+There is one abstract rule on the top of the hierarchy which convert a Member to a Person. It fills the firstName and family fields of a Person which are attributes that need to be filled for all types of Person. The family field is a reference to the Family of the Person. In order to obtain the correct reference, a unique lazy rule is used to create or retrieve the reference to the family because we do not want to have duplicate families.\\
 There is another abstract rule which extends the previous one. Its goal is only to create children. So, it sets the parents attribute with the correct references using a unique lazy rule that create or return the correct reference to a parent. We do that way for the same reason as previously mentioned : we do not want to have duplicate parents. For example, if two children have a common parent and we do not use a unique lazy rule, this parent will be created twice which is not what is expected.\\
-Finally, there are two concrete rules that extend the previous one. These rules create a son or a daughter according to his gender.
+Finally, there are two concrete rules that extend the previous one. These rules create a son or a daughter according to his gender. \\
+The fact that the two unique lazy rules for creating parents do not belong to the Person hierarchy and do not extends the Member2Person rule is a bit ugly because we have to duplicate code. But, on the other hand, these rules have to be unique lazy, so they can't be part of the hierarchy.
+\section{Helpers}
+We use several helpers in order to help us performing some repetitive actions. We have helpers to know whether a Member is a female or not, whether a Member is a child or not. We also have helpers to obtain the family of a Member or the number of children of a Family.
 
 \end{document}

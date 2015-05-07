@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage[a4paper,top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[a4paper]{geometry}
 \usepackage{graphicx}
 
 \title{Software Architectures\\ Assignment 4 : Model Driven Architectures}
@@ -10,5 +10,13 @@
 
 
 \begin{document}
-The approach for converting Families to ExtendedFamilies is to convert each child.
+\maketitle
+\section{Approach}
+Our approach for converting Families to ExtendedFamilies is to convert each child and let children creating their parents. The families are created by their members.
+\section{Rules hierarchy}
+The rules which convert members from the previous model to persons of the new model follow a hierarchy. \\
+There is one abstract rule on the top of the hierarchy which convert a Member to a Person. It fills the firstName and family fields of a Person which are attributes that need to be filled for all type of Person. The family field is a reference to the Family of the Person. In order to obtain the correct reference, a unique lazy rule is used to create or retrieve the reference to the family because we do not want to have duplicate families.\\
+There is another abstract rule which extends the previous one. Its goal is only to create children. So, it sets the parents attribute with the correct references using a unique lazy rule that create or return the correct reference to a parent. We do that way for the same reason as previously mentioned : we do not want to have duplicate parents. For example, if two children have a common parent and we do not use a unique lazy rule, this parent will be created twice which is not what is expected.\\
+Finally, there are two concrete rules that extend the previous one. These rules create a son or a daughter according to his gender.
+
 \end{document}

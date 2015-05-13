@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ExtendedFamily"
-    nsURI="platform:/resource/Families2Persons/ExtendedFamily" nsPrefix="ExtendedFamily">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ExtendedFamilies"
+    nsURI="platform:/resource/Families2Persons/ExtendedFamilies.ecore" nsPrefix="ExtendedFamilies">
   <eClassifiers xsi:type="ecore:EClass" name="Family">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="members" eType="#//Person"
-        containment="true" eOpposite="#//Person/family"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//Person" containment="true" eOpposite="#//Person/family"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="noOfChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Person" abstract="true">

@@ -1,5 +1,5 @@
 -- @path Families=/Families2Persons/Families.ecore
--- @path Persons=/Families2Persons/ExtendedFamilies.ecore
+-- @path ExtendedFamilies=/Families2Persons/ExtendedFamilies.ecore
 
 module Families2ExtendedFamilies;
 create OUT: ExtendedFamilies from IN: Families;
@@ -11,38 +11,99 @@ helper context Families!Member def: isFemale: Boolean =
 		not self.familyDaughter.oclIsUndefined()
 	endif;
 
-helper context Families!Member def: familyName: String =
-	Set{self.familyFather, self.familyMother, self.familySon, self.familyDaughter}
-		->any(f|not f.oclIsUndefined()).lastName;
-
-helper context Families!Member def: familyLink: Families!Family =
+--Return the reference to its family.
+helper context Families!Member def: family: Families!Family =
 	Set{self.familyFather, self.familyMother, self.familySon, self.familyDaughter}
 		->any(f|not f.oclIsUndefined());
 
-helper context Families!Member def: familyChildren: Families!Member =
-	let f : Families!Family = Set{self.familyFather, self.familyMother}->any(f|not f.oclIsUndefined()) in
-		f.sons->union(f.daughter);
+helper context Families!Member def: familyName: String =
+	self.family.lastName;
 
-helper context Families!Member def: familyParents: Families!Member =
-	let f : Families!Family = Set{self.familySon, self.familyDaughter}->any(f|not f.oclIsUndefined()) in
-		f.mother->union(f.father);
-		
+--Return the number of children for a family.
+--The set of children is the union between the set of sons and daughters.
+helper context Families!Family def: nbChildren: Integer =
+	let sons: Set(Families!Member) = self.sons
+	in sons.union(self.daughters).size();
+
+helper context Families!Member def: isChild: Boolean =
+	if not self.familySon.oclIsUndefined()
+	then
+		true
+	else
+		not self.familyDaughter.oclIsUndefined()
+	endif;
+
+
+--Create a new ExtendedFamilies!Family. This rule is lazy in order to be called in other rules.
+--It is unique to return the corresponding ExtendedFamilies!Family from a specified Families!Family or to create it if it does not exist.
+unique lazy rule Family2ExtendedFamily {
+	from
+		s: Families!Family
+	to
+		t: ExtendedFamilies!Family(
+			lastName <- s.lastName,
+			noOfChildren <- s.nbChildren)
+}
+
+--The abstract rule for creating Person from Member.
+--The attributes which are created the same way for all Person are firstName and family.
 abstract rule Member2Person {
 	from
 		s: Families!Member
 	to
-		t: ExtendedFamily!Person (
-			fullName <- s.firstName + ' ' + s.familyName,
-			family <- s.familyLink,
-			children <- s.familyChildren,
-			parents <- s.familyParents,
-			noOfChildren <- s.familyChildren->size()
+		t: ExtendedFamilies!Person (
+			firstName <- s.firstName,
+			family <- thisModule.Family2ExtendedFamily(s.family)
 		)
 }
 
-rule Member2Female extends Member2Person {
+--Rule which creates a child (of the class Person). This rule extends the common rule for creating Person.
+--Children create parents. 
+abstract rule Member2Child extends Member2Person {
 	from
-		s: Families!Member (s.isFemale)
+		s: Families!Member (s.isChild)
+	using {
+		parents: Set(Families!Member) = Set{s.family.father, s.family.mother}->select(p|not p.oclIsUndefined());
+		extParents: Set(ExtendedFamilies!Person) = parents->collect(par|if par.isFemale then thisModule.Member2ParentFemale(par) else thisModule.Member2ParentMale(par) endif);
+	}
 	to
-		t: ExtendedFamily!Female ()
+		t: ExtendedFamilies!Person (
+			parents <- extParents)
+}
+
+--Rule which creates a father (of the class Person). This rule does not extend the Member2Person rule because this rule needs to be unique.
+--So it has to be lazy and it can't extends a non-lazy rule.
+unique lazy rule Member2ParentFemale {
+	from
+		s: Families!Member ((not s.isChild) and s.isFemale)
+	to
+		t: ExtendedFamilies!Female (
+			firstName <- s.firstName,
+			family <- thisModule.Family2ExtendedFamily(s.family))
+}
+
+--Rule which creates a mother (of the class Person).
+unique lazy rule Member2ParentMale {
+	from
+		s: Families!Member ((not s.isChild) and (not s.isFemale))
+	to
+		t: ExtendedFamilies!Male (
+			firstName <- s.firstName,
+			family <- thisModule.Family2ExtendedFamily(s.family))
+}
+
+--Concrete rule that creates a daughter.
+rule Member2ChildFemale extends Member2Child {
+	from
+		s: Families!Member (s.isChild and s.isFemale)
+	to
+		t: ExtendedFamilies!Female ()
+}
+
+--Concrete rule that creates a son.
+rule Member2ChildMale extends Member2Child {
+	from
+		s: Families!Member (s.isChild and (not s.isFemale))
+	to
+		t: ExtendedFamilies!Male ()
 }

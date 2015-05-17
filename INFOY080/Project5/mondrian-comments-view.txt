@@ -1,0 +1,15 @@
+| view classes |
+classes := MooseModel root allModels first allModelClasses.
+view := MOViewRenderer new.
+
+view nodes: classes forEach: [ :class | 
+        view shape rectangle withoutBorder.
+        view nodes: class methods forEach:
+                [ :method | 
+                view shape rectangle fillColor: [method hasComments ifTrue: Color red ifFalse: Color black];
+                        width: 25; height: 25.
+                view node: method.].
+        view verticalLineLayout.].
+view edgesFrom: #superclass.
+view treeLayout.
+view open.

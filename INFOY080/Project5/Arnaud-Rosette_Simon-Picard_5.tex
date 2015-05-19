@@ -47,6 +47,8 @@ The metrics are :
 \item Presence of comments
 \item Presence of tests
 \end{itemize}
+
+Those metrics focus on the code quality of the program because the blueprint already shows many aspects of the architecture including classes interaction. In the following subsections, each metrics will be analysed for this project with an explaination of why they are important.
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{src/tc2.png}
 \caption{A representation of the web\_portal service showing comments and test}
@@ -55,7 +57,7 @@ The metrics are :
 In the visualisation, we can observe that there is a majority of green methods, meaning that they are commented. Nevertheless their is still some red methods, i.e without comments. Majority of red methods are in mono method classes, those are either exceptions or tests. The methods should ealways be commented, indeed it offer an easier comprehension in further developing but, in extrem programming the comments are forbiden, the code should be readable by itself by using adequate variable name.
 
 \subsection{Tests}
-The representation shows a really poor test use. Indeed, only four tests are printed and most of the time there is only one methods so we can assume that only few functionnalities are tested. The tests are the main tool for the developper, in some agile methods, the tests are created even before the functionnalities itself. The tests are important because they can help in assuring that everything works, and if they are good, the diffuculties in adding new functionnalities to the existing ones show up directly. Adding revelant tests might be the first improvement to do in this project.\\
+The representation shows a really poor test use. Indeed, only five tests are printed and most of the time there is only one method so we can assume that only few functionnalities are tested. The tests are the main tool for the developper, in some agile methods, the tests are created even before the functionnalities itself. The tests are important because they can help in assuring that everything works, and if they are good, the diffuculties in adding new functionnalities to the existing ones show up directly. Adding revelant tests might be the first improvement to do in this project.\\
 Note: some test classes are not linked, the matching test between two classes is done by comparing the name of them so some test dependance might be miss.
 
 \subsection{Methods}

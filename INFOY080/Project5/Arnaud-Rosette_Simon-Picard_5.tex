@@ -36,9 +36,9 @@ The graph exhibits a quite high cohesion inside classes. Indeed, most of the acc
 \subsection{Coupling}
 The coupling between classes is relatively low thanks to the layered architecture but it can be improved because the coupling inside a package can be lower, especially between a facade and the classes in the same package. Facade classes have to interact with abstract classes in order to be able to switch from an implementation to another with few modifications in the facade class.
 
-\section{Exercise 2 : Building your own visualization with Mondrian}
+\section{Exercise 2 : Building our own visualization with Mondrian}
 \subsection{Created visualisation}
-The newly created visualisation show the classes and their methods, the classes are linked in light grey to their parents and their children. Each methods of the class is a square either green or red, if it is green it means that the method contains comments, red otherwise. There are some other links, they are blue arrow, linking the class to the class that test them.\\
+The newly created visualisation shows the classes and their methods, the classes are linked in light grey to their parents and their children. Each methods of the class is a square either green or red, if it is green it means that the method contains comments, red otherwise. There are some other links, they are blue arrow, linking the class to the class that test them.\\
 The metrics are :
 \begin{itemize}
 \item Number of class
@@ -54,7 +54,7 @@ Those metrics focus on the code quality of the program because the blueprint alr
 \caption{A representation of the web\_portal service showing comments and test}
 \end{figure}
 \subsection{Comments}
-In the visualisation, we can observe that there is a majority of green methods, meaning that they are commented. Nevertheless their is still some red methods, i.e without comments. Majority of red methods are in mono method classes, those are either exceptions or tests. The methods should ealways be commented, indeed it offer an easier comprehension in further developing but, in extrem programming the comments are forbiden, the code should be readable by itself by using adequate variable name.
+In the visualisation, we can observe that there is a majority of green methods, meaning that they are commented. Nevertheless their is still some red methods, i.e without comments. Majority of red methods are in mono method classes, those are either exceptions or tests. The methods should always be commented, indeed it offers an easier comprehension in further developing but, in extrem programming the comments are forbiden, the code should be readable by itself by using adequate variable name.
 
 \subsection{Tests}
 The representation shows a really poor test use. Indeed, only five tests are printed and most of the time there is only one method so we can assume that only few functionnalities are tested. The tests are the main tool for the developper, in some agile methods, the tests are created even before the functionnalities itself. The tests are important because they can help in assuring that everything works, and if they are good, the diffuculties in adding new functionnalities to the existing ones show up directly. Adding revelant tests might be the first improvement to do in this project.\\
@@ -63,7 +63,6 @@ Note: some test classes are not linked, the matching test between two classes is
 \subsection{Methods}
 In this visualisation, we can observe the methods of the classes. If we focus on the one with the same number of methods and inheriting from the same class, one could ask himself if it would not be a good idea to refactor his architecture by adding some more inheritance. In the project, the structure of the datas are close, by example, RegularData inherit from Data but some child of RegularData could be regrouped by abstract classes.
 
-\newpage
 \subsection{Code}
 \begin{verbatim}
 

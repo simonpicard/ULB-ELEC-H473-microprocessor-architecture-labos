@@ -1,4 +1,0 @@
-urlid web_portal
-url jdbc:hsqldb:file:web_portal;shutdown=true
-username sa
-password
